@@ -11,8 +11,7 @@ public class QuickStart {
     public static void main( String[] args ) {
 
         // Replace the placeholder with your MongoDB deployment's connection string
-        String uri = "mongodb+srv://luzli:sxpLqxjD4N6NuEyW@cluster0.xvafcwk.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
-
+        String uri = "<replace with connection string>";
         try (MongoClient mongoClient = MongoClients.create(uri)) {
             MongoDatabase database = mongoClient.getDatabase("sample_mflix");
             MongoCollection<Document> collection = database.getCollection("movies");
