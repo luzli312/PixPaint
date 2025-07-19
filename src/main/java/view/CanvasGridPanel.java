@@ -1,6 +1,8 @@
 package view;
 
 
+import interface_adapter.canvas_grid.ChangeColorController;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -12,9 +14,11 @@ public class CanvasGridPanel extends JPanel {
     private static final int GAP = 1;
     private static final Color BORDER = Color.decode("#000000");
     private static final Color DEFAULT = Color.decode("#FFFFFF");
+    private final ChangeColorController changeColorController;
 
-    public CanvasGridPanel()
+    public CanvasGridPanel(String color, ChangeColorController changeColorController)
     {
+        this.changeColorController = changeColorController;
         setBackground(BORDER);
         setBorder(BorderFactory.createEmptyBorder(GAP, GAP, GAP, GAP));
         setLayout(new GridLayout(LENGTH, LENGTH, GAP, GAP));
@@ -25,6 +29,8 @@ public class CanvasGridPanel extends JPanel {
                 cell.setBackground(DEFAULT);
                 cell.setPreferredSize(prefSize);
                 add(cell);
+                cell.addActionListener(e -> changeColorController.execute(color, (JButton) e.getSource()));
+
             }
         }
     }
