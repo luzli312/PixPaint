@@ -1,5 +1,7 @@
 package view;
 
+import app.Main;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -20,12 +22,14 @@ public class LoginView extends JPanel {
     private final JButton toLogin = new JButton("Login");
     private final JButton toSignUp = new JButton("Sign Up");
 
-    // Instance variable storing the main JPanel and CardLayout so that the action listeners
+    // Instance variable storing the main window, panels, and layout so that the action listeners
     // can call them to change the current view.
+    private final JFrame startWindow;
     private final JPanel views;
     private final CardLayout cards;
 
-    public LoginView (JPanel views, CardLayout cards) {
+    public LoginView (JFrame start, JPanel views, CardLayout cards) {
+        this.startWindow = start;
         this.views = views;
         this.cards = cards;
 
@@ -52,6 +56,16 @@ public class LoginView extends JPanel {
                     cards.show(views, "Signup");
                 }
         }
+        );
+
+        // Add action listener for Login button to redirect to main drawing panel.
+        toLogin.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        start.dispose();
+                        Main.openPixPaint();
+                    }
+                }
         );
 
     }

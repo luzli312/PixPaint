@@ -23,12 +23,14 @@ public class SignupView extends JPanel {
     private final JButton toSignup = new JButton("Sign Up");
     private final JButton toLogin = new JButton("Login");
 
-    // Instance variable storing the main JPanel and CardLayout so that the action listeners
+    // Instance variable storing the main window, panels, and layout so that the action listeners
     // can call them to change the current view.
+    private final JFrame startWindow;
     private final JPanel views;
     private final CardLayout cards;
 
-    public SignupView(JPanel views, CardLayout cards) {
+    public SignupView(JFrame start, JPanel views, CardLayout cards) {
+        this.startWindow = start;
         this.views = views;
         this.cards = cards;
 

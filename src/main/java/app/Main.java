@@ -1,7 +1,10 @@
 package app;
 
+import interface_adapter.canvas_grid.ChangeColorController;
+import view.CanvasGridPanel;
 import view.LoginView;
 import view.SignupView;
+import view.StartupWindow;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,21 +12,15 @@ import java.awt.*;
 public class Main {
 
     public static void main(String[] args) {
-        final JFrame application = new JFrame("Welcome to PixPaint!");
-        application.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        new StartupWindow();
+    }
 
-        // Create a CardLayout JPanel with the login and signup views available.
-        CardLayout cards = new CardLayout();
-        JPanel views = new JPanel(cards);
-        views.add(new LoginView(views, cards), "Login");
-        views.add(new SignupView(views, cards), "Signup");
+    public static void openPixPaint() {
+        JFrame pixPaint = new JFrame("PixPaint!");
+        pixPaint.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
-        // Show the login screen by default.
-        cards.show(views, "Login");
-
-        // Add the JPanel to the frame and make it visible.
-        application.add(views);
-        application.pack();
-        application.setVisible(true);
+        pixPaint.add(new CanvasGridPanel("#000000", new ChangeColorController()));
+        pixPaint.pack();
+        pixPaint.setVisible(true);
     }
 }
