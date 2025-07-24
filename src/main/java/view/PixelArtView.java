@@ -1,5 +1,6 @@
 package view;
 
+import interface_adapter.canvas_grid.ChangeColorController;
 import view.CanvasGridPanel;
 import javax.swing.*;
 import java.awt.*;
@@ -14,6 +15,8 @@ public class PixelArtView extends JPanel {
     private final JButton saveButton = new JButton("Save");
     private final JButton loadButton = new JButton("Load");
 
+    private final CanvasGridPanel canvasGridPanel;
+
     public PixelArtView() {
         this.setLayout(new BorderLayout(10, 10));
         this.setBackground(Color.LIGHT_GRAY);
@@ -21,6 +24,8 @@ public class PixelArtView extends JPanel {
 
         canvasPanel.setBackground(Color.WHITE);
         canvasPanel.setPreferredSize(new Dimension(400, 400));
+        canvasGridPanel = new CanvasGridPanel("white", new ChangeColorController());
+        canvasPanel.add(canvasGridPanel);
 
         palettePanel.setLayout(new GridLayout(5, 3, 5, 5));
         palettePanel.setPreferredSize(new Dimension(100, 100));
