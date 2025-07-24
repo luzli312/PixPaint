@@ -24,7 +24,7 @@ public class PixelArtView extends JPanel {
 
         canvasPanel.setBackground(Color.WHITE);
         canvasPanel.setPreferredSize(new Dimension(400, 400));
-        canvasGridPanel = new CanvasGridPanel("white", new ChangeColorController());
+        canvasGridPanel = new CanvasGridPanel("#000000", new ChangeColorController());
         canvasPanel.add(canvasGridPanel);
 
         palettePanel.setLayout(new GridLayout(5, 3, 5, 5));
