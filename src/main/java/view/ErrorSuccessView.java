@@ -4,14 +4,14 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ErrorView extends JFrame implements ActionListener {
+public class ErrorSuccessView extends JFrame implements ActionListener {
 
-    public ErrorView(String errorType, String errorMessage) {
-        this.setTitle(errorType);
+    public ErrorSuccessView(String responseType, String message) {
+        this.setTitle(responseType);
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
 
-        this.add(new JLabel(errorMessage));
+        this.add(new JLabel(message));
 
         final JButton close = new JButton("OK");
         this.add(close);
