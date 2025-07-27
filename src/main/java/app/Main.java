@@ -1,7 +1,5 @@
 package app;
 
-import interface_adapter.canvas_grid.ChangeColorController;
-import view.CanvasGridPanel;
 import view.PixelArtView;
 import view.StartupWindow;
 

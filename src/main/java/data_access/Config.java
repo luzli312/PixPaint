@@ -1,4 +1,4 @@
-package api;
+package data_access;
 
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
@@ -14,7 +14,7 @@ public class Config {
         return Files.readAllLines(path).get(0);
     }
 
-    public static MongoClient mongoClient;
+    public static final MongoClient mongoClient;
 
     static {
         try {
