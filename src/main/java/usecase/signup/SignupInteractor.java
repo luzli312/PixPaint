@@ -15,7 +15,10 @@ public class SignupInteractor {
 
     public void execute() {
 
-        if (userDataAccessObject.existsByName(input.getUsername())) {
+        if (input.getUsername().trim().isEmpty() || input.getPassword().trim().isEmpty()) {
+            new ErrorSuccessView("Error", "Username and/or password contains no characters.");
+        }
+        else if (userDataAccessObject.existsByName(input.getUsername())) {
             new ErrorSuccessView("Error", "A user with this username already exists.");
         }
         else if (!input.getPassword().equals(input.getPasswordConfirm())) {
