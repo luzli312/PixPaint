@@ -16,7 +16,7 @@ public class CanvasGridPanel extends JPanel {
     private static final Color DEFAULT = Color.decode("#FFFFFF");
     private final ChangeColorController changeColorController;
 
-    public CanvasGridPanel(String color, ChangeColorController changeColorController)
+    public CanvasGridPanel(ChangeColorController changeColorController)
     {
         this.changeColorController = changeColorController;
         setBackground(BORDER);
@@ -29,10 +29,15 @@ public class CanvasGridPanel extends JPanel {
                 cell.setBackground(DEFAULT);
                 cell.setPreferredSize(prefSize);
                 add(cell);
-                cell.addActionListener(e -> changeColorController.execute(color, (JButton) e.getSource()));
+                cell.addActionListener(e -> changeColorController.execute((JButton) e.getSource()));
 
             }
         }
     }
+
+    public ChangeColorController getChangeColorController() {
+        return changeColorController;
+    }
+
 }
 
