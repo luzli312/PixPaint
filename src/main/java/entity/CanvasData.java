@@ -45,4 +45,18 @@ public class CanvasData {
         return result;
     }
 
+    public static Color[][] parseCanvasData(Document rawCanvasData) {
+        Color[][] result = new Color[32][32];
+        for (int i = 0; i < 32; i++) {
+            String row = rawCanvasData.getString(Integer.toString(i));
+            String[] colorValues = row.substring(1, row.length() - 1).split(",");
+            for (int j = 0; j < colorValues.length; j++) {
+                String color = colorValues[j].trim();
+                Color parsedColor = new Color(Integer.parseInt(color));
+                result[i][j] = parsedColor;
+            }
+        }
+        return result;
+    }
+
 }

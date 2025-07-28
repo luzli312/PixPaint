@@ -37,12 +37,39 @@ public class CanvasGridPanel extends JPanel {
         }
     }
 
+    /*
+    public CanvasGridPanel(ChangeColorController changeColorController, Color[][] loadData) {
+        this.changeColorController = changeColorController;
+        setBackground(BORDER);
+        setBorder(BorderFactory.createEmptyBorder(GAP, GAP, GAP, GAP));
+        setLayout(new GridLayout(LENGTH, LENGTH, GAP, GAP));
+        Dimension prefSize = new Dimension(SIDE_LENGTH, SIDE_LENGTH);
+        for (int i = 0; i < LENGTH; i++) {
+            for (int j = 0; j < LENGTH; j++) {
+                JButton cell = new JButton();
+                cell.setBackground(loadData[i][j]);
+                cell.setPreferredSize(prefSize);
+                add(cell);
+                cell.addActionListener(e -> changeColorController.execute((JButton) e.getSource()));
+                allCells[i][j] = cell;
+            }
+        }
+    }
+*/
     public ChangeColorController getChangeColorController() {
         return changeColorController;
     }
 
     public JButton[][] getAllCells() {
         return allCells;
+    }
+
+    public void loadCanvasGridPanel(Color[][] loadData) {
+        for (int i = 0; i < LENGTH; i++) {
+            for (int j = 0; j < LENGTH; j++) {
+                allCells[i][j].setBackground(loadData[i][j]);
+            }
+        }
     }
 
 }

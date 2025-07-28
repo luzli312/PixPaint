@@ -3,6 +3,7 @@ package view;
 import entity.CanvasData;
 import interface_adapter.canvas_grid.ChangeColorController;
 import usecase.color_canvas.PaletteSelection;
+import usecase.load_canvas.LoadCanvasInteractor;
 import usecase.save_canvas.SaveCanvasInteractor;
 import view.CanvasGridPanel;
 import javax.swing.*;
@@ -20,7 +21,7 @@ public class PixelArtView extends JPanel implements ActionListener {
     private final JButton saveButton = new JButton("Save");
     private final JButton loadButton = new JButton("Load");
 
-    private final CanvasGridPanel canvasGridPanel;
+    private CanvasGridPanel canvasGridPanel;
 
     public PixelArtView() {
         this.setLayout(new BorderLayout(10, 10));
@@ -102,6 +103,9 @@ public class PixelArtView extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource()==saveButton) {
             new SaveCanvasInteractor().execute(canvasGridPanel);
+        }
+        else if (e.getSource()==loadButton) {
+            new LoadCanvasInteractor().execute(canvasGridPanel);
         }
     }
 

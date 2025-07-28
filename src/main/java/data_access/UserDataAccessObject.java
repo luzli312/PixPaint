@@ -45,7 +45,7 @@ public class UserDataAccessObject {
         return password.equals(result.getString("password"));
     }
 
-    public User get (String username) {
+    public User getUser(String username) {
         Document result = Config.users.find(eq("username", username)).first();
         assert result != null;
         final String name = result.getString("username");
@@ -57,4 +57,7 @@ public class UserDataAccessObject {
         Config.projects.insertOne(canvasData);
     }
 
+    public Document getProject(String projectTitle) {
+        return Config.projects.find(eq("title", projectTitle)).first();
+    }
 }
