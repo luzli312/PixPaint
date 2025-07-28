@@ -16,7 +16,7 @@ public class UserDataAccessObject {
     }
     */
 
-    public void create(String username, String password) {
+    public void createUser(String username, String password) {
         Document user = new Document("username", username)
                 .append("password", password);
 
@@ -45,11 +45,19 @@ public class UserDataAccessObject {
         return password.equals(result.getString("password"));
     }
 
-    public User get (String username) {
+    public User getUser(String username) {
         Document result = Config.users.find(eq("username", username)).first();
         assert result != null;
         final String name = result.getString("username");
         final String password = result.getString("password");
         return new User(name, password);
+    }
+
+    public void createProject(Document canvasData) {
+        Config.projects.insertOne(canvasData);
+    }
+
+    public Document getProject(String projectTitle) {
+        return Config.projects.find(eq("title", projectTitle)).first();
     }
 }

@@ -25,7 +25,7 @@ public class SignupInteractor {
             new ErrorSuccessView("Error", "The passwords do not match.");
         }
         else {
-            userDataAccessObject.create(input.getUsername(), input.getPassword());
+            userDataAccessObject.createUser(input.getUsername(), input.getPassword());
             new ErrorSuccessView("Success", "You have successfully signed up for PixPaint!");
         }
     }

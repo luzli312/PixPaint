@@ -1,7 +1,6 @@
 package usecase.login;
 
 import data_access.UserDataAccessObject;
-import entity.User;
 import interface_adapter.logged_in.LoggedInState;
 import view.ErrorSuccessView;
 
@@ -23,7 +22,8 @@ public class LoginInteractor {
             new ErrorSuccessView("Error", "Incorrect password.");
         }
         else {
-            new LoggedInState(userDataAccessObject.get(input.getUsername())).execute();
+            LoggedInState.setCurrentUser(userDataAccessObject.getUser(input.getUsername()));
+            LoggedInState.execute();
         }
     }
 

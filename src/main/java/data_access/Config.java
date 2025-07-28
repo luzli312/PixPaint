@@ -20,6 +20,7 @@ public class Config {
     public static final MongoClient mongoClient;
     public static final MongoDatabase pixPaintDatabase;
     public static final MongoCollection<Document> users;
+    public static final MongoCollection<Document> projects;
 
     static {
         try {
@@ -30,6 +31,7 @@ public class Config {
 
         pixPaintDatabase = mongoClient.getDatabase("PixPaint");
         users = pixPaintDatabase.getCollection("users");
+        projects = pixPaintDatabase.getCollection("projects");
     }
 
 }

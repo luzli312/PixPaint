@@ -1,11 +1,17 @@
 package view;
 
+import entity.CanvasData;
 import interface_adapter.canvas_grid.ChangeColorController;
+import usecase.color_canvas.PaletteSelection;
+import usecase.load_canvas.LoadCanvasInteractor;
+import usecase.save_canvas.SaveCanvasInteractor;
 import view.CanvasGridPanel;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class PixelArtView extends JPanel {
+public class PixelArtView extends JPanel implements ActionListener {
     private final JPanel canvasPanel = new JPanel();
     private final JPanel palettePanel = new JPanel();
 
@@ -15,7 +21,7 @@ public class PixelArtView extends JPanel {
     private final JButton saveButton = new JButton("Save");
     private final JButton loadButton = new JButton("Load");
 
-    private final CanvasGridPanel canvasGridPanel;
+    private CanvasGridPanel canvasGridPanel;
 
     public PixelArtView() {
         this.setLayout(new BorderLayout(10, 10));
@@ -24,7 +30,7 @@ public class PixelArtView extends JPanel {
 
         canvasPanel.setBackground(Color.WHITE);
         canvasPanel.setPreferredSize(new Dimension(400, 400));
-        canvasGridPanel = new CanvasGridPanel("#000000", new ChangeColorController());
+        canvasGridPanel = new CanvasGridPanel(new ChangeColorController());
         canvasPanel.add(canvasGridPanel);
 
         palettePanel.setLayout(new GridLayout(5, 3, 5, 5));
@@ -34,6 +40,9 @@ public class PixelArtView extends JPanel {
                 Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW, Color.ORANGE,
                 Color.CYAN, Color.MAGENTA, Color.PINK, Color.DARK_GRAY, Color.BLACK
         };
+
+        // Create new PaletteSelection object to store selected color from palette.
+        PaletteSelection paletteSelection = new PaletteSelection(canvasGridPanel);
 
         for (Color color : colors) {
             JButton colorTile = new JButton();
@@ -46,11 +55,25 @@ public class PixelArtView extends JPanel {
             colorTile.setMaximumSize(new Dimension(40, 40));
             colorTile.setBorder(BorderFactory.createLineBorder(Color.GRAY));
             palettePanel.add(colorTile);
+
+            // Add an action listener so that clicking the color tile changes the palette selection.
+            colorTile.addActionListener(
+                    new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            paletteSelection.setCurrentSelection(colorTile);
+                        }
+                    }
+            );
         }
 
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 15, 5));
         buttonPanel.add(saveButton);
         buttonPanel.add(loadButton);
+        // Adding action listeners to the save and load buttons.
+        saveButton.addActionListener(this);
+        loadButton.addActionListener(this);
+
         ImageIcon brushIcon = new ImageIcon(getClass().getResource("/brush.png"));
         ImageIcon eraserIcon = new ImageIcon(getClass().getResource("/eraser.png"));
 
@@ -74,6 +97,16 @@ public class PixelArtView extends JPanel {
 
         this.add(canvasPanel, BorderLayout.CENTER);
         this.add(rightPanel, BorderLayout.EAST);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource()==saveButton) {
+            new SaveCanvasInteractor().execute(canvasGridPanel);
+        }
+        else if (e.getSource()==loadButton) {
+            new LoadCanvasInteractor().execute(canvasGridPanel);
+        }
     }
 
 }

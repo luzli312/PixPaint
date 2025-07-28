@@ -7,14 +7,19 @@ import java.awt.*;
 
 public class ChangeColorController {
 
+    private Color currentColor = Color.BLACK;
+
     /**
      * Executes the Color Canvas Use Case.
      *
-     * @param colorCode the username of the user logging in
-     * @return
-     */
-    public void execute(String colorCode, JButton button) {
-        Color newColor = Color.decode(colorCode);
-        button.setBackground(newColor);
+     * @param button the grid square to be filled with the current color.
+     * */
+    public void execute(JButton button) {
+        button.setBackground(currentColor);
     }
+
+    public void setCurrentColor(Color newColor) {
+        currentColor = newColor;
+    }
+
 }
