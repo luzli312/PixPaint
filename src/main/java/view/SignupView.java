@@ -1,5 +1,8 @@
 package view;
 
+import usecase.signup.SignupInputData;
+import usecase.signup.SignupInteractor;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -8,7 +11,7 @@ import java.awt.event.ActionListener;
 /**
  * This class contains the JPanel setup for the user signup view.
  */
-public class SignupView extends JPanel {
+public class SignupView extends JPanel implements ActionListener{
     // Create instance variables for the displays in the JPanel.
     private final JLabel signupTitle = new JLabel("Signup for PixPaint:");
     private final LabelFieldPanel usernameInfo;
@@ -44,6 +47,10 @@ public class SignupView extends JPanel {
         signupButtons.add(toSignup);
         signupButtons.add(toLogin);
 
+        // Adding action listeners to the buttons.
+        toLogin.addActionListener(this);
+        toSignup.addActionListener(this);
+
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.add(signupTitle);
         this.add(usernameInfo);
@@ -51,15 +58,23 @@ public class SignupView extends JPanel {
         this.add(passwordConfirm);
         this.add(signupButtons);
 
-        // Add action listener so that the Login button will change the view to the
-        // login view.
-        toLogin.addActionListener(
-                new ActionListener() {
-                    public void actionPerformed(ActionEvent evt) {
-                        cards.show(views, "Login");
-                    }
+    }
+
+    /**
+     * Action listeners for the Login and Signup buttons.
+     * @param e the event to be processed
+     */
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        // Switches to the login view once the Login button is clicked.
+        if (e.getSource()==toLogin) {
+            cards.show(views, "Login");
         }
-        );
+        else if (e.getSource()==toSignup) {
+            SignupInputData input = new SignupInputData(usernameInput.getText(), passwordInput.getText(),
+                    passwordConfirmInput.getText());
+            new SignupInteractor(input).execute();
+        }
     }
 
 }
