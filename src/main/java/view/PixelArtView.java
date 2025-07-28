@@ -1,7 +1,9 @@
 package view;
 
+import entity.CanvasData;
 import interface_adapter.canvas_grid.ChangeColorController;
 import usecase.color_canvas.PaletteSelection;
+import usecase.save_canvas.SaveCanvasInteractor;
 import view.CanvasGridPanel;
 import javax.swing.*;
 import java.awt.*;
@@ -67,6 +69,10 @@ public class PixelArtView extends JPanel implements ActionListener {
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 15, 5));
         buttonPanel.add(saveButton);
         buttonPanel.add(loadButton);
+        // Adding action listeners to the save and load buttons.
+        saveButton.addActionListener(this);
+        loadButton.addActionListener(this);
+
         ImageIcon brushIcon = new ImageIcon(getClass().getResource("/brush.png"));
         ImageIcon eraserIcon = new ImageIcon(getClass().getResource("/eraser.png"));
 
@@ -94,7 +100,9 @@ public class PixelArtView extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        if (e.getSource()==saveButton) {
+            new SaveCanvasInteractor().execute(canvasGridPanel);
+        }
     }
 
 }

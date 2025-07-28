@@ -23,7 +23,8 @@ public class LoginInteractor {
             new ErrorSuccessView("Error", "Incorrect password.");
         }
         else {
-            new LoggedInState(userDataAccessObject.get(input.getUsername())).execute();
+            LoggedInState.setCurrentUser(userDataAccessObject.get(input.getUsername()));
+            LoggedInState.execute();
         }
     }
 

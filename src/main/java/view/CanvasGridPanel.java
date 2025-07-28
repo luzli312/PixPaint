@@ -5,6 +5,7 @@ import interface_adapter.canvas_grid.ChangeColorController;
 
 import javax.swing.*;
 import java.awt.*;
+import java.lang.reflect.Array;
 
 public class CanvasGridPanel extends JPanel {
     // Create 32 x 32 grid, white squares, maybe add black lines to separate each square.
@@ -15,6 +16,7 @@ public class CanvasGridPanel extends JPanel {
     private static final Color BORDER = Color.decode("#000000");
     private static final Color DEFAULT = Color.decode("#FFFFFF");
     private final ChangeColorController changeColorController;
+    private final JButton[][] allCells = new JButton[32][32];
 
     public CanvasGridPanel(ChangeColorController changeColorController)
     {
@@ -30,13 +32,17 @@ public class CanvasGridPanel extends JPanel {
                 cell.setPreferredSize(prefSize);
                 add(cell);
                 cell.addActionListener(e -> changeColorController.execute((JButton) e.getSource()));
-
+                allCells[i][j] = cell;
             }
         }
     }
 
     public ChangeColorController getChangeColorController() {
         return changeColorController;
+    }
+
+    public JButton[][] getAllCells() {
+        return allCells;
     }
 
 }

@@ -16,7 +16,7 @@ public class UserDataAccessObject {
     }
     */
 
-    public void create(String username, String password) {
+    public void createUser(String username, String password) {
         Document user = new Document("username", username)
                 .append("password", password);
 
@@ -52,4 +52,9 @@ public class UserDataAccessObject {
         final String password = result.getString("password");
         return new User(name, password);
     }
+
+    public void createProject(Document canvasData) {
+        Config.projects.insertOne(canvasData);
+    }
+
 }

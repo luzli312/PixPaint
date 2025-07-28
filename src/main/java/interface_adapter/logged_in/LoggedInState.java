@@ -4,17 +4,25 @@ import app.Main;
 import entity.User;
 
 /**
- * This class keeps track of the user currently logged in. It stores the current User object.
+ * This class keeps track of the currentUser currently logged in. It stores the current User object.
  */
 public class LoggedInState {
-    private final User user;
+    private static User currentUser = null;
 
-    public LoggedInState(User currentUser) {
-        this.user = currentUser;
+    private LoggedInState() {
     }
 
-    public void execute() {
+    public static void setCurrentUser(User user) {
+        currentUser = user;
+    }
+
+    public static void execute() {
         Main.closeStartupWindow();
-        Main.openPixPaint(user.getUsername());
+        Main.openPixPaint(currentUser.getUsername());
     }
+
+    public static User getCurrentUser() {
+        return currentUser;
+    }
+
 }
