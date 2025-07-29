@@ -4,6 +4,7 @@ import entity.User;
 import org.bson.Document;
 
 import static com.mongodb.client.model.Filters.eq;
+import com.mongodb.client.model.Filters;
 
 public class UserDataAccessObject {
     /*
@@ -15,7 +16,6 @@ public class UserDataAccessObject {
         this.password = password;
     }
     */
-
     public void createUser(String username, String password) {
         Document user = new Document("username", username)
                 .append("password", password);
@@ -59,5 +59,23 @@ public class UserDataAccessObject {
 
     public Document getProject(String projectTitle) {
         return Config.projects.find(eq("title", projectTitle)).first();
+    }
+
+    public boolean projectExists(User user, String projectTitle) {
+        Document found = Config.projects.find(
+                Filters.and(
+                        Filters.eq("user", user.getUsername()),
+                        Filters.eq("title", projectTitle)
+                )).first();
+        return found != null;
+    }
+
+    public void updateProject(Document canvasData) {
+        Config.projects.replaceOne(
+                Filters.and(
+                        Filters.eq("user", canvasData.getString("user")),
+                        Filters.eq("title", canvasData.getString("title"))
+                ),
+                canvasData);
     }
 }
