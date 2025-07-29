@@ -4,6 +4,7 @@ import view.PixelArtView;
 import view.StartupWindow;
 
 import javax.swing.*;
+import java.util.ArrayList;
 
 public class Main {
 
@@ -17,7 +18,8 @@ public class Main {
         JFrame pixPaint = new JFrame(username + "'s PixPaint!");
         pixPaint.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
-        pixPaint.add(new PixelArtView());
+        // when first opening the app have grid input be input white
+        pixPaint.add(new PixelArtView(username));
         pixPaint.setSize(900, 800);
         pixPaint.setVisible(true);
     }
