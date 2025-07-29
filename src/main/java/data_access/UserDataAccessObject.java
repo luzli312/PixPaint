@@ -1,7 +1,16 @@
 package data_access;
 
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Filters;
 import entity.User;
 import org.bson.Document;
+import org.bson.conversions.Bson;
+
+import java.io.IOException;
+import java.util.ArrayList;
 
 import static com.mongodb.client.model.Filters.eq;
 
@@ -57,7 +66,21 @@ public class UserDataAccessObject {
         Config.projects.insertOne(canvasData);
     }
 
-    public Document getProject(String projectTitle) {
-        return Config.projects.find(eq("title", projectTitle)).first();
+    public Document getProject(String username, String projectTitle) {
+        Bson filter = Filters.and(eq("user", username), eq("title", projectTitle));
+        return Config.projects.find(filter).first();
+    }
+
+    public static ArrayList<String> getProjectNames(String username) throws IOException {
+        ArrayList<String> projects = new ArrayList<>();
+        try (MongoClient mongoClient = MongoClients.create(Config.getAPIToken())) {
+            MongoDatabase database = mongoClient.getDatabase("PixPaint");
+            MongoCollection<Document> collection = database.getCollection("projects");
+
+            for (Document project : collection.find(eq("user", username))) {
+                projects.add(project.get("title").toString());
+            }
+        }
+        return projects;
     }
 }

@@ -2,6 +2,7 @@ package view;
 
 import entity.CanvasData;
 import interface_adapter.canvas_grid.ChangeColorController;
+import interface_adapter.load.LoadController;
 import usecase.color_canvas.PaletteSelection;
 import usecase.load_canvas.LoadCanvasInteractor;
 import usecase.save_canvas.SaveCanvasInteractor;
@@ -10,6 +11,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class PixelArtView extends JPanel implements ActionListener {
     private final JPanel canvasPanel = new JPanel();
@@ -23,7 +25,9 @@ public class PixelArtView extends JPanel implements ActionListener {
 
     private CanvasGridPanel canvasGridPanel;
 
-    public PixelArtView() {
+    public PixelArtView(String username) {
+        final LoadController loadController = new LoadController(username);
+
         this.setLayout(new BorderLayout(10, 10));
         this.setBackground(Color.LIGHT_GRAY);
         this.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -72,7 +76,16 @@ public class PixelArtView extends JPanel implements ActionListener {
         buttonPanel.add(loadButton);
         // Adding action listeners to the save and load buttons.
         saveButton.addActionListener(this);
-        loadButton.addActionListener(this);
+        loadButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    loadController.execute(canvasGridPanel);
+                } catch (IOException e1) {
+                    throw new RuntimeException(e1);
+                }
+            }
+        });
 
         ImageIcon brushIcon = new ImageIcon(getClass().getResource("/brush.png"));
         ImageIcon eraserIcon = new ImageIcon(getClass().getResource("/eraser.png"));
@@ -104,9 +117,5 @@ public class PixelArtView extends JPanel implements ActionListener {
         if (e.getSource()==saveButton) {
             new SaveCanvasInteractor().execute(canvasGridPanel);
         }
-        else if (e.getSource()==loadButton) {
-            new LoadCanvasInteractor().execute(canvasGridPanel);
-        }
     }
-
 }

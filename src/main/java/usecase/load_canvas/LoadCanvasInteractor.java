@@ -12,10 +12,10 @@ import java.awt.*;
 
 public class LoadCanvasInteractor {
 
-    public void execute(CanvasGridPanel canvasGridPanel) {
-        Document rawCanvasData = new UserDataAccessObject().getProject("test");
+    public void execute(String username, CanvasGridPanel canvasGridPanel, String title) {
+        Document rawCanvasData = new UserDataAccessObject().getProject(username, title);
         Color[][] parsedData = CanvasData.parseCanvasData(rawCanvasData);
         canvasGridPanel.loadCanvasGridPanel(parsedData);
+        System.out.println("Ran Load Canvas Interactor");
     }
-
 }
