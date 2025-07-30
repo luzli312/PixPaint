@@ -1,11 +1,11 @@
 package interface_adapter.canvas_grid;
 
-import usecase.ColorCanvasInterface;
+import usecase.color_canvas.ColorCanvasInterface;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class ChangeColorController {
+public class ChangeColorController implements ColorCanvasInterface{
 
     private Color currentColor = Color.BLACK;
 

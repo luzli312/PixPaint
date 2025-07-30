@@ -20,6 +20,7 @@ public class StartupWindow extends JFrame {
         // Add the JPanel to the frame and make it visible.
         this.add(views);
         this.pack();
+        this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
 }
