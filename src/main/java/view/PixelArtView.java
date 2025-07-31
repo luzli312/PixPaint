@@ -85,6 +85,12 @@ public class PixelArtView extends JPanel implements ActionListener {
             );
         }
 
+        try{
+            UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 15, 5));
         buttonPanel.add(saveButton);
         buttonPanel.add(loadButton);

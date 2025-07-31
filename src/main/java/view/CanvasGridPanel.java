@@ -29,6 +29,8 @@ public class CanvasGridPanel extends JPanel {
             for (int j = 0; j < LENGTH; j++) {
                 JButton cell = new JButton();
                 cell.setBackground(DEFAULT);
+                cell.setForeground(DEFAULT);
+                cell.setOpaque(true);
                 cell.setPreferredSize(prefSize);
                 add(cell);
                 cell.addActionListener(e -> changeColorController.execute((JButton) e.getSource()));

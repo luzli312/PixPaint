@@ -16,6 +16,8 @@ public class ChangeColorController implements ColorCanvasInterface{
      * */
     public void execute(JButton button) {
         button.setBackground(currentColor);
+        button.setForeground(currentColor);
+        button.setOpaque(true);
     }
 
     public void setCurrentColor(Color newColor) {
