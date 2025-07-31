@@ -1,6 +1,9 @@
 package view;
 
 import entity.CanvasData;
+import data_access.UserDataAccessObject;
+import entity.User;
+import interface_adapter.logged_in.LoggedInState;
 import interface_adapter.canvas_grid.ChangeColorController;
 import interface_adapter.load.LoadController;
 import usecase.color_canvas.PaletteSelection;
@@ -151,8 +154,36 @@ public class PixelArtView extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource()==saveButton) {
-            new SaveCanvasInteractor().execute(canvasGridPanel);
+        if (e.getSource() == saveButton) {
+            String projectName = JOptionPane.showInputDialog(
+                    this, "Enter project name:", "Save Project", JOptionPane.PLAIN_MESSAGE);
+
+            if (projectName == null || projectName.trim().isEmpty()) {
+                new ErrorSuccessView("Error", "Empty project name!");
+                return;
+            }
+
+            UserDataAccessObject userDataAccessObject = new UserDataAccessObject();
+            User currentUser = LoggedInState.getCurrentUser();
+
+            try {
+                if (userDataAccessObject.projectExists(currentUser, projectName)) {
+                    int option = JOptionPane.showConfirmDialog(this,
+                            "Project already exists. Overwrite?", "Overwrite",
+                            JOptionPane.YES_NO_OPTION);
+                    if (option != JOptionPane.YES_OPTION) {
+                        return;
+                    }
+                    CanvasData canvasData = new CanvasData(currentUser, projectName, canvasGridPanel);
+                    userDataAccessObject.updateProject(canvasData.exportCanvasData());
+                    new ErrorSuccessView("Success", "Project updated successfully!");
+                } else {
+                    new SaveCanvasInteractor().execute(currentUser, canvasGridPanel, projectName);
+                    new ErrorSuccessView("Success", "Project saved successfully!");
+                }
+            } catch (Exception ex) {
+                new ErrorSuccessView("Error", "Failed to save project: " + ex.getMessage());
+            }
         }
     }
 }
