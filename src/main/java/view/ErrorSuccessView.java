@@ -9,6 +9,7 @@ public class ErrorSuccessView extends JFrame implements ActionListener {
     public ErrorSuccessView(String responseType, String message) {
         this.setTitle(responseType);
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        this.setLocationRelativeTo(null);
         this.setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
 
         this.add(new JLabel(message));
