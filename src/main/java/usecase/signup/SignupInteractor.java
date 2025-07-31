@@ -15,8 +15,11 @@ public class SignupInteractor {
 
     public void execute() {
 
-        if (input.getUsername().trim().isEmpty() || input.getPassword().trim().isEmpty()) {
+        if (input.getUsername().isEmpty() || input.getPassword().isEmpty()) {
             new ErrorSuccessView("Error", "Username and/or password contains no characters.");
+        }
+        else if (input.getUsername().matches(".* .*") || input.getPassword().matches(".* .*")) {
+            new ErrorSuccessView("Error", "Cannot have whitespace characters in username or password");
         }
         else if (userDataAccessObject.existsByName(input.getUsername())) {
             new ErrorSuccessView("Error", "A user with this username already exists.");

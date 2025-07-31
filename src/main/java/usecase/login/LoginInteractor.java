@@ -15,14 +15,14 @@ public class LoginInteractor {
     }
 
     public void execute() {
-        if (!userDataAccessObject.existsByName(input.getUsername())) {
+        if (!userDataAccessObject.existsByName(input.getUsername().trim())) {
             new ErrorSuccessView("Error", "No such user exists.");
         }
-        else if (!userDataAccessObject.passwordCorrect(input.getUsername(), input.getPassword())) {
+        else if (!userDataAccessObject.passwordCorrect(input.getUsername().trim(), input.getPassword().trim())) {
             new ErrorSuccessView("Error", "Incorrect password.");
         }
         else {
-            LoggedInState.setCurrentUser(userDataAccessObject.getUser(input.getUsername()));
+            LoggedInState.setCurrentUser(userDataAccessObject.getUser(input.getUsername().trim()));
             LoggedInState.execute();
         }
     }
