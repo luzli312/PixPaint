@@ -53,12 +53,12 @@ public class PixelArtView extends JPanel implements ActionListener {
             JButton colorTile = new JButton();
             colorTile.setBackground(color);
             colorTile.setOpaque(true);
-            colorTile.setBorderPainted(false);
+            colorTile.setBorderPainted(true);
             colorTile.setFocusPainted(false);
             colorTile.setContentAreaFilled(true);
             colorTile.setPreferredSize(new Dimension(40, 40));
             colorTile.setMaximumSize(new Dimension(40, 40));
-            colorTile.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+            colorTile.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
             palettePanel.add(colorTile);
 
             // Add an action listener so that clicking the color tile changes the palette selection.
@@ -66,13 +66,17 @@ public class PixelArtView extends JPanel implements ActionListener {
                     new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
-                            if (eraserButton.getBorder() == BorderFactory.createBevelBorder(BevelBorder.LOWERED)) {
-                                eraserButton.setBorderPainted(true);
-                                eraserButton.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
+                            // If the eraser button has not been selected, selecting a color will result in painting
+                            // that color.
+                            if (eraserButton.getBorder() != BorderFactory.createBevelBorder(BevelBorder.LOWERED)) {
+                                paletteSelection.setCurrentSelection(colorTile);
+                                colorTile.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
                             }
-                            colorTile.setBorderPainted(true);
-                            colorTile.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
-                            paletteSelection.setCurrentSelection(colorTile);
+                            // If the eraser button has been selected, you can still change what color is selected
+                            // but the color being painted is still white because you have not switched to the brush.
+                            else {
+                                paletteSelection.changeSelectionIndicator(colorTile);
+                            }
                         }
                     }
             );
@@ -99,7 +103,7 @@ public class PixelArtView extends JPanel implements ActionListener {
 
         brushButton = new JButton(brushIcon);
         brushButton.setBorderPainted(true);
-        brushButton.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
+        brushButton.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
         brushButton.setPreferredSize(new Dimension(50, 50));
         brushButton.setToolTipText("Brush Tool");
 
@@ -111,15 +115,23 @@ public class PixelArtView extends JPanel implements ActionListener {
         eraserButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (paletteSelection.getCurrentSelection() != null &&
-                        paletteSelection.getCurrentSelection().getBorder() ==
-                                BorderFactory.createBevelBorder(BevelBorder.LOWERED)) {
-                    paletteSelection.getCurrentSelection().setBorderPainted(false);
-                    paletteSelection.getCurrentSelection().setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
+                if (((BevelBorder) brushButton.getBorder()).getBevelType() == BevelBorder.LOWERED) {
+                    brushButton.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
                 }
-                eraserButton.setBorderPainted(true);
                 eraserButton.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
                 canvasGridPanel.getChangeColorController().setCurrentColor(Color.WHITE);
+            }
+        });
+
+        // Adjust brush button bevel border when clicked.
+        brushButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (((BevelBorder) eraserButton.getBorder()).getBevelType() == BevelBorder.LOWERED) {
+                    eraserButton.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
+                    paletteSelection.sendCurrentSelection();
+                }
+                brushButton.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
             }
         });
 
