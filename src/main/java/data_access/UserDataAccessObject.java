@@ -101,4 +101,22 @@ public class UserDataAccessObject {
                 ),
                 canvasData);
     }
+
+    public boolean projectExists(User user, String projectTitle) {
+        Document found = Config.projects.find(
+                Filters.and(
+                        Filters.eq("user", user.getUsername()),
+                        Filters.eq("title", projectTitle)
+                )).first();
+        return found != null;
+    }
+
+    public void updateProject(Document canvasData) {
+        Config.projects.replaceOne(
+                Filters.and(
+                        Filters.eq("user", canvasData.getString("user")),
+                        Filters.eq("title", canvasData.getString("title"))
+                ),
+                canvasData);
+    }
 }
