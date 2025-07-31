@@ -4,6 +4,7 @@ import app.Main;
 import data_access.UserDataAccessObject;
 import entity.User;
 import interface_adapter.canvas_grid.ChangeColorController;
+import interface_adapter.load.LoadController;
 import org.bson.Document;
 import usecase.load_canvas.LoadCanvasInteractor;
 
@@ -25,7 +26,7 @@ public class LoadView extends JPanel {
     private final JPanel panel;
     private final CardLayout layout;
 
-    public LoadView (String username, JPanel view, CardLayout layout, CanvasGridPanel canvasGridPanel) throws IOException {
+    public LoadView (String username, JPanel view, CardLayout layout, CanvasGridPanel canvasGridPanel, LoadController loadController) throws IOException {
         this.projectList = UserDataAccessObject.getProjectNames(username);
         this.panel = view;
         this.layout = layout;
@@ -75,7 +76,7 @@ public class LoadView extends JPanel {
                             if (component instanceof JRadioButton && ((JRadioButton) component).isSelected()) {
                                     String projname = ((JRadioButton) component).getText();
                                     // Main.openPixPaint(username, GetSavedProject.getProject(username, projname));
-                                    new LoadCanvasInteractor().execute(username, canvasGridPanel, projname);
+                                    new LoadCanvasInteractor().execute(username, canvasGridPanel, projname, loadController);
                                     startFrame.dispose();
                                 }
 

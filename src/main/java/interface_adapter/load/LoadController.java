@@ -11,8 +11,10 @@ public class LoadController {
     private final JPanel main = new JPanel(new BorderLayout());
     private final CardLayout cardLayout = new CardLayout();
     private final String username;
+    private String projectTitle;
 
     public LoadController(String username) {
+        this.projectTitle = username + "_Project";
         this.username = username;
     }
 
@@ -21,6 +23,14 @@ public class LoadController {
      *
      */
     public void execute(CanvasGridPanel canvasGridPanel) throws IOException {
-        new LoadView(username, main, cardLayout, canvasGridPanel);
+        new LoadView(username, main, cardLayout, canvasGridPanel, this);
+    }
+
+    public void setCurrentProject(String title) {
+        this.projectTitle = title;
+    }
+
+    public String getCurrentProject() {
+        return projectTitle;
     }
 }

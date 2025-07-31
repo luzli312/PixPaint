@@ -6,6 +6,7 @@ import view.CanvasGridPanel;
 import javax.swing.*;
 import java.awt.*;
 import java.util.Arrays;
+import java.util.Objects;
 
 public class CanvasData {
 
@@ -29,7 +30,16 @@ public class CanvasData {
         String[][] result = new String[32][32];
         for (int i = 0; i < canvasData.length; i++) {
             for (int j = 0; j < canvasData[i].length; j++) {
-                result[i][j] = Integer.toString(canvasData[i][j].getBackground().getRGB());
+                if (canvasData[i][j].getBackground() == Color.WHITE &&
+                        Objects.equals(canvasData[i][j].getName(), "transparent")) {
+                    Color transparent = new Color(255, 255, 255, 0);
+                    result[i][j] = Integer.toString(transparent.getRGB());
+                    result[i][j].concat(Integer.toString(transparent.getAlpha()));
+                }
+                else {
+                    result[i][j] = Integer.toString(canvasData[i][j].getBackground().getRGB());
+                    result[i][j].concat(Integer.toString(1));
+                }
             }
         }
         return result;
@@ -52,7 +62,7 @@ public class CanvasData {
             String[] colorValues = row.substring(1, row.length() - 1).split(",");
             for (int j = 0; j < colorValues.length; j++) {
                 String color = colorValues[j].trim();
-                Color parsedColor = new Color(Integer.parseInt(color));
+                Color parsedColor = new Color(Integer.parseInt(color), true);
                 result[i][j] = parsedColor;
             }
         }
