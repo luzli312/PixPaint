@@ -8,6 +8,7 @@ import usecase.load_canvas.LoadCanvasInteractor;
 import usecase.save_canvas.SaveCanvasInteractor;
 import view.CanvasGridPanel;
 import javax.swing.*;
+import javax.swing.border.BevelBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -65,6 +66,12 @@ public class PixelArtView extends JPanel implements ActionListener {
                     new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
+                            if (eraserButton.getBorder() == BorderFactory.createBevelBorder(BevelBorder.LOWERED)) {
+                                eraserButton.setBorderPainted(true);
+                                eraserButton.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
+                            }
+                            colorTile.setBorderPainted(true);
+                            colorTile.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
                             paletteSelection.setCurrentSelection(colorTile);
                         }
                     }
@@ -91,12 +98,30 @@ public class PixelArtView extends JPanel implements ActionListener {
         ImageIcon eraserIcon = new ImageIcon(getClass().getResource("/eraser.png"));
 
         brushButton = new JButton(brushIcon);
+        brushButton.setBorderPainted(true);
+        brushButton.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
         brushButton.setPreferredSize(new Dimension(50, 50));
         brushButton.setToolTipText("Brush Tool");
 
         eraserButton = new JButton(eraserIcon);
+        eraserButton.setBorderPainted(true);
+        eraserButton.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
         eraserButton.setPreferredSize(new Dimension(50, 50));
         eraserButton.setToolTipText("Eraser Tool");
+        eraserButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (paletteSelection.getCurrentSelection() != null &&
+                        paletteSelection.getCurrentSelection().getBorder() ==
+                                BorderFactory.createBevelBorder(BevelBorder.LOWERED)) {
+                    paletteSelection.getCurrentSelection().setBorderPainted(false);
+                    paletteSelection.getCurrentSelection().setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
+                }
+                eraserButton.setBorderPainted(true);
+                eraserButton.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
+                canvasGridPanel.getChangeColorController().setCurrentColor(Color.WHITE);
+            }
+        });
 
         JPanel toolPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 5));
         toolPanel.add(brushButton);

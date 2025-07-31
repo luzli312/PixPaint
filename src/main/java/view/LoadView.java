@@ -5,7 +5,6 @@ import data_access.UserDataAccessObject;
 import entity.User;
 import interface_adapter.canvas_grid.ChangeColorController;
 import org.bson.Document;
-import usecase.GetSavedProject;
 import usecase.load_canvas.LoadCanvasInteractor;
 
 import javax.swing.*;
@@ -26,27 +25,31 @@ public class LoadView extends JPanel {
     private final JPanel panel;
     private final CardLayout layout;
 
-    // private CanvasGridPanel canvasGridPanel;
-
     public LoadView (String username, JPanel view, CardLayout layout, CanvasGridPanel canvasGridPanel) throws IOException {
         this.projectList = UserDataAccessObject.getProjectNames(username);
         this.panel = view;
         this.layout = layout;
 
-        // canvasGridPanel = new CanvasGridPanel(new ChangeColorController());
-
         loadTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         final JPanel projectBoxes = new JPanel();
+        projectBoxes.setAlignmentX(Component.RIGHT_ALIGNMENT);
         projectBoxes.setLayout(new BoxLayout(projectBoxes, BoxLayout.Y_AXIS));
         final ButtonGroup projButtons = new ButtonGroup();
+        int max_length = 35;
         for (String title : projectList) {
+            if (title.length() > max_length) {
+                max_length = title.length();
+            }
             JRadioButton radioButton = new JRadioButton(title);
+            radioButton.setLayout(new FlowLayout(FlowLayout.LEADING));
+            radioButton.setAlignmentX(Component.RIGHT_ALIGNMENT);
             projButtons.add(radioButton);
             projectBoxes.add(radioButton);
         }
 
         final JPanel loadButtons = new JPanel();
+        // loadButtons.setSize(max_length, projectList.size() + 10);
         loadButtons.setLayout(new FlowLayout(FlowLayout.RIGHT));
         loadButtons.setAlignmentX(Component.LEFT_ALIGNMENT);
         loadButtons.add(toCanvas, BorderLayout.SOUTH);
@@ -58,7 +61,8 @@ public class LoadView extends JPanel {
 
         startFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         startFrame.add(this);
-        startFrame.setSize(600, 400);
+        startFrame.setSize(max_length*10, (projectList.size() + 12)*10);
+        startFrame.setLocationRelativeTo(null);
         startFrame.setVisible(true);
 
         // action listener for Ok button to redirect to main Canvas Frame,
@@ -73,7 +77,6 @@ public class LoadView extends JPanel {
                                     // Main.openPixPaint(username, GetSavedProject.getProject(username, projname));
                                     new LoadCanvasInteractor().execute(username, canvasGridPanel, projname);
                                     startFrame.dispose();
-                                    System.out.println(projname);
                                 }
 
                         }

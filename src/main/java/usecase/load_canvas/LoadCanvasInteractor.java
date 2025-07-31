@@ -16,6 +16,5 @@ public class LoadCanvasInteractor {
         Document rawCanvasData = new UserDataAccessObject().getProject(username, title);
         Color[][] parsedData = CanvasData.parseCanvasData(rawCanvasData);
         canvasGridPanel.loadCanvasGridPanel(parsedData);
-        System.out.println("Ran Load Canvas Interactor");
     }
 }

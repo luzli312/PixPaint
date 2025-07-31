@@ -1,11 +1,11 @@
-package usecase;
+package usecase.color_canvas;
 
 import javax.swing.*;
 
 public interface ColorCanvasInterface {
     /**
      * Executes the ColorCanvas use case.
-     * @param colorCode button the input data
+     * @param button the input data
      */
-    void execute(String colorCode, JButton button);
+    void execute(JButton button);
 }
