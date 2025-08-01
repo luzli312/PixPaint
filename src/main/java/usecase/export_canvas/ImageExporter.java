@@ -1,10 +1,13 @@
 package usecase.export_canvas;
 
+import view.ErrorSuccessView;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import javax.swing.*;
 
 public class ImageExporter {
 
@@ -16,6 +19,7 @@ public class ImageExporter {
         } catch (IOException e) {
             System.err.println("Error saving image: " + e.getMessage());
             e.printStackTrace();
+            new ErrorSuccessView("Error", "Failed to export project: filepath doesn't exist");
         }
     }
 
@@ -25,6 +29,18 @@ public class ImageExporter {
 
         int width = cols * cellSize;
         int height = rows * cellSize;
+
+        String userHome = System.getProperty("user.home");
+        String picturesPath = userHome + File.separator + File.separator + "Pictures" + File.separator + title + ".png";
+
+        String filepath = JOptionPane.showInputDialog(null,
+                "filepath:",
+                "Export Project",
+                JOptionPane.PLAIN_MESSAGE,
+                null,
+                null,
+                 picturesPath).toString();
+
 
         BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_4BYTE_ABGR);
         Graphics2D g2d = image.createGraphics();
@@ -44,9 +60,7 @@ public class ImageExporter {
 
         g2d.dispose();
 
-        String userHome = System.getProperty("user.home");
-        String picturesPath = userHome + File.separator + "OneDrive" + File.separator + "Pictures" + File.separator + title + ".png";
-        saveImage(image, "png", picturesPath);
+        saveImage(image, "png", filepath);
 
     }
 
