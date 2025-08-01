@@ -34,7 +34,7 @@ public class ImageExporter {
         // Draw each cell
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
-                Color color = grid[i][j];
+                Color color = grid[j][i];
                 if (color != null && color.getAlpha() > 0) {
                     g2d.setColor(color);
                     g2d.fillRect(i * cellSize, j * cellSize, cellSize, cellSize);

@@ -30,8 +30,7 @@ public class CanvasData {
         String[][] result = new String[32][32];
         for (int i = 0; i < canvasData.length; i++) {
             for (int j = 0; j < canvasData[i].length; j++) {
-                if (canvasData[i][j].getBackground() == Color.WHITE &&
-                        Objects.equals(canvasData[i][j].getName(), "transparent")) {
+                if (Objects.equals(canvasData[i][j].getName(), "transparent")) {
                     Color transparent = new Color(255, 255, 255, 0);
                     result[i][j] = Integer.toString(transparent.getRGB());
                     result[i][j].concat(Integer.toString(transparent.getAlpha()));
