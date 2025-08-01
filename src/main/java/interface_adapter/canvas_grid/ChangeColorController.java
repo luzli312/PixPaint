@@ -15,9 +15,14 @@ public class ChangeColorController implements ColorCanvasInterface{
      * @param button the grid square to be filled with the current color.
      * */
     public void execute(JButton button) {
-        button.setBackground(currentColor);
-        button.setForeground(currentColor);
-        button.setOpaque(true);
+        if (currentColor.getAlpha() == 0){
+            button.setBackground(new Color(255,255,255, 255));
+            button.setName("transparent");
+        }
+        else {
+            button.setBackground(currentColor);
+            button.setName("Opaque");
+        }
     }
 
     public void setCurrentColor(Color newColor) {

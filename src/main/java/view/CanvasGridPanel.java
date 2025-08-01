@@ -29,8 +29,9 @@ public class CanvasGridPanel extends JPanel {
             for (int j = 0; j < LENGTH; j++) {
                 JButton cell = new JButton();
                 cell.setBackground(DEFAULT);
-                cell.setForeground(DEFAULT);
-                cell.setOpaque(true);
+
+                cell.setName("transparent");
+
                 cell.setPreferredSize(prefSize);
                 add(cell);
                 cell.addActionListener(e -> changeColorController.execute((JButton) e.getSource()));
@@ -50,7 +51,14 @@ public class CanvasGridPanel extends JPanel {
     public void loadCanvasGridPanel(Color[][] loadData) {
         for (int i = 0; i < LENGTH; i++) {
             for (int j = 0; j < LENGTH; j++) {
-                allCells[i][j].setBackground(loadData[i][j]);
+                if (loadData[i][j].getAlpha() == 0) {
+                    allCells[i][j].setBackground(DEFAULT);
+                    allCells[i][j].setName("transparent");
+                }
+                else {
+                    allCells[i][j].setBackground(loadData[i][j]);
+                    allCells[i][j].setName("Opaque");
+                }
             }
         }
     }

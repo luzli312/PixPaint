@@ -5,11 +5,11 @@ import data_access.UserDataAccessObject;
 import entity.User;
 import interface_adapter.logged_in.LoggedInState;
 import interface_adapter.canvas_grid.ChangeColorController;
+import interface_adapter.export.ExportController;
 import interface_adapter.load.LoadController;
 import usecase.color_canvas.PaletteSelection;
-import usecase.load_canvas.LoadCanvasInteractor;
 import usecase.save_canvas.SaveCanvasInteractor;
-import view.CanvasGridPanel;
+
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import java.awt.*;
@@ -26,11 +26,13 @@ public class PixelArtView extends JPanel implements ActionListener {
 
     private final JButton saveButton = new JButton("Save");
     private final JButton loadButton = new JButton("Load");
+    private final JButton exportButton = new JButton("Export");
 
     private CanvasGridPanel canvasGridPanel;
 
     public PixelArtView(String username) {
         final LoadController loadController = new LoadController(username);
+        final ExportController exportController = new ExportController(username);
 
         this.setLayout(new BorderLayout(10, 10));
         this.setBackground(Color.LIGHT_GRAY);
@@ -94,6 +96,16 @@ public class PixelArtView extends JPanel implements ActionListener {
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 15, 5));
         buttonPanel.add(saveButton);
         buttonPanel.add(loadButton);
+        buttonPanel.add(exportButton);
+        exportButton.addActionListener(
+                new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        exportController.execute(canvasGridPanel, loadController.getCurrentProject());
+                    }
+                }
+        );
+
         // Adding action listeners to the save and load buttons.
         saveButton.addActionListener(this);
         loadButton.addActionListener(new ActionListener() {
@@ -128,7 +140,7 @@ public class PixelArtView extends JPanel implements ActionListener {
                     brushButton.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
                 }
                 eraserButton.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
-                canvasGridPanel.getChangeColorController().setCurrentColor(Color.WHITE);
+                canvasGridPanel.getChangeColorController().setCurrentColor(new Color(255, 255, 255, 0));
             }
         });
 
