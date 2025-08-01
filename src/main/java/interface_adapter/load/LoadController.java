@@ -1,5 +1,6 @@
 package interface_adapter.load;
 
+import usecase.load_canvas.LoadInterface;
 import view.CanvasGridPanel;
 import view.LoadView;
 
@@ -7,7 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 
-public class LoadController {
+public class LoadController implements LoadInterface {
     private final JPanel main = new JPanel(new BorderLayout());
     private final CardLayout cardLayout = new CardLayout();
     private final String username;

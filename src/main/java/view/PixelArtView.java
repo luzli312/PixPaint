@@ -7,11 +7,9 @@ import interface_adapter.logged_in.LoggedInState;
 import interface_adapter.canvas_grid.ChangeColorController;
 import interface_adapter.export.ExportController;
 import interface_adapter.load.LoadController;
-import usecase.ImageExporter;
 import usecase.color_canvas.PaletteSelection;
-import usecase.load_canvas.LoadCanvasInteractor;
 import usecase.save_canvas.SaveCanvasInteractor;
-import view.CanvasGridPanel;
+
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import java.awt.*;
@@ -101,6 +99,7 @@ public class PixelArtView extends JPanel implements ActionListener {
                     }
                 }
         );
+
         // Adding action listeners to the save and load buttons.
         saveButton.addActionListener(this);
         loadButton.addActionListener(new ActionListener() {
