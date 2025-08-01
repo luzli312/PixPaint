@@ -31,7 +31,7 @@ public class ImageExporter {
         int height = rows * cellSize;
 
         String userHome = System.getProperty("user.home");
-        String picturesPath = userHome + File.separator + File.separator + "Pictures" + File.separator + title + ".png";
+        String picturesPath = userHome + File.separator + "Pictures" + File.separator + title + ".png";
 
         String filepath = JOptionPane.showInputDialog(null,
                 "filepath:",
