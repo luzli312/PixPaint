@@ -20,7 +20,7 @@ public class Main {
 
         // when first opening the app have grid input be input white
         pixPaint.add(new PixelArtView(username));
-        pixPaint.setSize(900, 800);
+        pixPaint.setSize(1000, 800);
         pixPaint.setLocationRelativeTo(null);
         pixPaint.setVisible(true);
     }
