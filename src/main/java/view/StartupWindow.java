@@ -12,7 +12,7 @@ public class StartupWindow extends JFrame {
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
         views.add(new LoginView(this, views, cards), "Login");
-        views.add(new SignupView(this, views, cards), "Signup");
+        views.add(new SignupView(views, cards), "Signup");
 
         // Show the login screen by default.
         cards.show(views, "Login");

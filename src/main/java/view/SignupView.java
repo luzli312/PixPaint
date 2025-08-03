@@ -14,9 +14,6 @@ import java.awt.event.ActionListener;
 public class SignupView extends JPanel implements ActionListener{
     // Create instance variables for the displays in the JPanel.
     private final JLabel signupTitle = new JLabel("Signup for PixPaint:");
-    private final LabelFieldPanel usernameInfo;
-    private final LabelFieldPanel passwordInfo;
-    private final LabelFieldPanel passwordConfirm;
     private final JLabel username = new JLabel("Username:");
     private final JLabel password = new JLabel("Password:");
     private final JLabel confirmPassword = new JLabel("Confirm Password:");
@@ -28,20 +25,43 @@ public class SignupView extends JPanel implements ActionListener{
 
     // Instance variable storing the main window, panels, and layout so that the action listeners
     // can call them to change the current view.
-    private final JFrame startWindow;
+
     private final JPanel views;
     private final CardLayout cards;
 
-    public SignupView(JFrame start, JPanel views, CardLayout cards) {
-        this.startWindow = start;
+    public SignupView(JPanel views, CardLayout cards) {
         this.views = views;
         this.cards = cards;
 
         signupTitle.setAlignmentX(CENTER_ALIGNMENT);
 
-        usernameInfo = new LabelFieldPanel(username, usernameInput);
-        passwordInfo = new LabelFieldPanel(password, passwordInput);
-        passwordConfirm = new LabelFieldPanel(confirmPassword, passwordConfirmInput);
+        final JPanel inputFields = new JPanel();
+        final GroupLayout inputLayout = new GroupLayout(inputFields);
+        inputFields.setLayout(inputLayout);
+
+        // Create gaps between components and between the components and container.
+        inputLayout.setAutoCreateGaps(true);
+        inputLayout.setAutoCreateContainerGaps(true);
+
+        // Create a sequential group for the vertical and horizontal axes.
+        GroupLayout.SequentialGroup vertical = inputLayout.createSequentialGroup();
+        GroupLayout.SequentialGroup horizontal = inputLayout.createSequentialGroup();
+
+        // Align labels and text field pairs vertically.
+        vertical.addGroup(inputLayout.createParallelGroup(GroupLayout.Alignment.BASELINE).
+                addComponent(username).addComponent(usernameInput));
+        vertical.addGroup(inputLayout.createParallelGroup(GroupLayout.Alignment.BASELINE).
+                addComponent(password).addComponent(passwordInput));
+        vertical.addGroup(inputLayout.createParallelGroup(GroupLayout.Alignment.BASELINE).
+                addComponent(confirmPassword).addComponent(passwordConfirmInput));
+        inputLayout.setVerticalGroup(vertical);
+
+        // Align labels with other labels and text fields with other fields horizontally.
+        horizontal.addGroup(inputLayout.createParallelGroup(GroupLayout.Alignment.TRAILING).
+                addComponent(username).addComponent(password).addComponent(confirmPassword));
+        horizontal.addGroup(inputLayout.createParallelGroup().
+                addComponent(usernameInput).addComponent(passwordInput).addComponent(passwordConfirmInput));
+        inputLayout.setHorizontalGroup(horizontal);
 
         final JPanel signupButtons = new JPanel();
         signupButtons.add(toSignup);
@@ -53,9 +73,7 @@ public class SignupView extends JPanel implements ActionListener{
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.add(signupTitle);
-        this.add(usernameInfo);
-        this.add(passwordInfo);
-        this.add(passwordConfirm);
+        this.add(inputFields);
         this.add(signupButtons);
 
     }
