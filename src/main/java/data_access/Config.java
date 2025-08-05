@@ -1,37 +1,44 @@
 package data_access;
 
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
-import org.bson.Document;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import org.bson.Document;
+
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+
 public class Config {
-    public static String getAPIToken() throws IOException {
-        Path path = Paths.get("token.txt");
+    public static final MongoClient MONGO_CLIENT;
+    public static final MongoDatabase PIX_PAINT_DATABASE;
+    public static final MongoCollection<Document> USERS;
+    public static final MongoCollection<Document> PROJECTS;
+
+    /**
+     * Retrieves the connection string to access the cluster.
+     * @return the connection string.
+     * @throws IOException for method readAllLines.
+     */
+    public static String getApiToken() throws IOException {
+        final Path path = Paths.get("token.txt");
         return Files.readAllLines(path).get(0);
     }
 
-    public static final MongoClient mongoClient;
-    public static final MongoDatabase pixPaintDatabase;
-    public static final MongoCollection<Document> users;
-    public static final MongoCollection<Document> projects;
-
     static {
         try {
-            mongoClient = MongoClients.create(getAPIToken());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+            MONGO_CLIENT = MongoClients.create(getApiToken());
+        }
+        catch (IOException ex) {
+            throw new RuntimeException(ex);
         }
 
-        pixPaintDatabase = mongoClient.getDatabase("PixPaint");
-        users = pixPaintDatabase.getCollection("users");
-        projects = pixPaintDatabase.getCollection("projects");
+        PIX_PAINT_DATABASE = MONGO_CLIENT.getDatabase("PixPaint");
+        USERS = PIX_PAINT_DATABASE.getCollection("users");
+        PROJECTS = PIX_PAINT_DATABASE.getCollection("projects");
     }
 
 }

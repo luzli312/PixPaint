@@ -12,8 +12,9 @@ public class ExportController implements ExportInterface {
     }
 
     /**
-     * Executes the Export Use Case to open the load window
-     *
+     * Executes the Export Use Case to open the load window.
+     * @param canvasGridPanel inputs the current canvas grid panel open.
+     * @param title inputs the name of the project.
      */
     public void execute(CanvasGridPanel canvasGridPanel, String title) {
         new ExportCanvasInteractor().execute(canvasGridPanel, title);

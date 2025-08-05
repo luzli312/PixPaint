@@ -6,8 +6,9 @@ import entity.User;
 /**
  * This class keeps track of the currentUser currently logged in. It stores the current User object.
  */
-public class LoggedInState {
-    private static User currentUser = null;
+public final class LoggedInState {
+    // currentUser has a default value of null, so not explicitly initialized.
+    private static User currentUser;
 
     private LoggedInState() {
     }
@@ -16,6 +17,9 @@ public class LoggedInState {
         currentUser = user;
     }
 
+    /**
+     * Executes opening the app after clicking login.
+     */
     public static void execute() {
         Main.closeStartupWindow();
         Main.openPixPaint(currentUser.getUsername());

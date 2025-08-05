@@ -2,16 +2,18 @@ package usecase.save_canvas;
 
 import data_access.UserDataAccessObject;
 import entity.CanvasData;
-import interface_adapter.logged_in.LoggedInState;
 import entity.User;
 import view.CanvasGridPanel;
 
-import java.awt.*;
-
 public class SaveCanvasInteractor {
-
+    /**
+     * Executes the save function once clicking the save button.
+     * @param user the username of the current user.
+     * @param canvasGridPanel the data from the current canvas grid panel.
+     * @param title the title of the project.
+     */
     public void execute(User user, CanvasGridPanel canvasGridPanel, String title) {
-        CanvasData canvasData = new CanvasData(user, title, canvasGridPanel);
+        final CanvasData canvasData = new CanvasData(user, title, canvasGridPanel);
         new UserDataAccessObject().createProject(canvasData.exportCanvasData());
     }
 }

@@ -11,8 +11,8 @@ import javax.swing.JTextField;
  */
 
 public class LabelFieldPanel extends JPanel {
-        LabelFieldPanel(JLabel fieldLabel, JTextField textField) {
-            this.add(fieldLabel);
-            this.add(textField);
-        }
+    LabelFieldPanel(JLabel fieldLabel, JTextField textField) {
+        this.add(fieldLabel);
+        this.add(textField);
+    }
 }

@@ -1,15 +1,19 @@
 package view;
 
-import app.Main;
-import usecase.login.LoginInputData;
-import usecase.login.LoginInteractor;
-import usecase.signup.SignupInputData;
-import usecase.signup.SignupInteractor;
-
-import javax.swing.*;
-import java.awt.*;
+import java.awt.CardLayout;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+import usecase.login.LoginInputData;
+import usecase.login.LoginInteractor;
 
 /**
  * This class contains the JPanel setup for the user login view.
@@ -31,7 +35,7 @@ public class LoginView extends JPanel implements ActionListener {
     private final JPanel views;
     private final CardLayout cards;
 
-    public LoginView (JFrame start, JPanel views, CardLayout cards) {
+    public LoginView(JFrame start, JPanel views, CardLayout cards) {
         this.views = views;
         this.cards = cards;
 
@@ -62,11 +66,11 @@ public class LoginView extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         // Sends login input to the LoginInteractor to check validity.
-        if (e.getSource()==toLogin) {
-            LoginInputData input = new LoginInputData(usernameInput.getText(), passwordInput.getText());
+        if (e.getSource() == toLogin) {
+            final LoginInputData input = new LoginInputData(usernameInput.getText(), passwordInput.getText());
             new LoginInteractor(input).execute();
         }
-        else if (e.getSource()==toSignUp) {
+        else if (e.getSource() == toSignUp) {
             cards.show(views, "Signup");
         }
     }

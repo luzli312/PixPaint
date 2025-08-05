@@ -1,21 +1,25 @@
 package usecase.color_canvas;
 
-import view.CanvasGridPanel;
-
-import javax.swing.*;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.border.BevelBorder;
+
+import view.CanvasGridPanel;
 
 public class PaletteSelection {
 
     private JButton currentSelection;
     private CanvasGridPanel canvasGridPanel;
 
-    public PaletteSelection (CanvasGridPanel canvasGridPanel) {
+    public PaletteSelection(CanvasGridPanel canvasGridPanel) {
         this.canvasGridPanel = canvasGridPanel;
     }
 
-    // Changes what color tile is currently selected.
-    public void setCurrentSelection (JButton newSelection) {
+    /**
+     * Changes what color tile is currently selected.
+     * @param newSelection inputs the color tile that is newly selected.
+     */
+    public void setCurrentSelection(JButton newSelection) {
         // Checks if the tile that was clicked is a different tile than was selected before.
         if (this.currentSelection != newSelection) {
             if (this.currentSelection != null) {
@@ -33,7 +37,7 @@ public class PaletteSelection {
         canvasGridPanel.getChangeColorController().setCurrentColor(currentSelection.getBackground());
     }
 
-    public JButton getCurrentSelection () {
+    public JButton getCurrentSelection() {
         return currentSelection;
     }
 

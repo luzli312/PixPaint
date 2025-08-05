@@ -4,6 +4,7 @@ import data_access.UserDataAccessObject;
 import view.ErrorSuccessView;
 
 public class SignupInteractor {
+    private static final String ERROR = "Error";
 
     private final SignupInputData input;
     private final UserDataAccessObject userDataAccessObject;
@@ -13,19 +14,23 @@ public class SignupInteractor {
         this.userDataAccessObject = new UserDataAccessObject();
     }
 
+    /**
+     * Executes the different windows once clicking the signup button.
+     * Depending on the input of the signup window.
+     */
     public void execute() {
 
         if (input.getUsername().isEmpty() || input.getPassword().isEmpty()) {
-            new ErrorSuccessView("Error", "Username and/or password contains no characters.");
+            new ErrorSuccessView(ERROR, "Username and/or password contains no characters.");
         }
         else if (input.getUsername().matches(".* .*") || input.getPassword().matches(".* .*")) {
-            new ErrorSuccessView("Error", "Cannot have whitespace characters in username or password");
+            new ErrorSuccessView(ERROR, "Cannot have whitespace characters in username or password");
         }
         else if (userDataAccessObject.existsByName(input.getUsername())) {
-            new ErrorSuccessView("Error", "A user with this username already exists.");
+            new ErrorSuccessView(ERROR, "A user with this username already exists.");
         }
         else if (!input.getPassword().equals(input.getPasswordConfirm())) {
-            new ErrorSuccessView("Error", "The passwords do not match.");
+            new ErrorSuccessView(ERROR, "The passwords do not match.");
         }
         else {
             userDataAccessObject.createUser(input.getUsername(), input.getPassword());

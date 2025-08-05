@@ -1,6 +1,6 @@
 package usecase.color_canvas;
 
-import javax.swing.*;
+import javax.swing.JButton;
 
 public interface ColorCanvasInterface {
     /**
