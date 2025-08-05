@@ -14,6 +14,10 @@ public class LoginInteractor {
         this.userDataAccessObject = new UserDataAccessObject();
     }
 
+    /**
+     * Executes the different windows to open once clicking the login button.
+     * Depends on the username, password, and success case.
+     */
     public void execute() {
         if (!userDataAccessObject.existsByName(input.getUsername().trim())) {
             new ErrorSuccessView("Error", "No such user exists.");

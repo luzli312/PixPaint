@@ -1,11 +1,13 @@
 package interface_adapter.canvas_grid;
 
+import java.awt.Color;
+
+import javax.swing.JButton;
+
 import usecase.color_canvas.ColorCanvasInterface;
 
-import javax.swing.*;
-import java.awt.*;
-
-public class ChangeColorController implements ColorCanvasInterface{
+public class ChangeColorController implements ColorCanvasInterface {
+    private static final Integer COLOR_NUM = 255;
 
     private Color currentColor = Color.BLACK;
 
@@ -15,8 +17,8 @@ public class ChangeColorController implements ColorCanvasInterface{
      * @param button the grid square to be filled with the current color.
      * */
     public void execute(JButton button) {
-        if (currentColor.getAlpha() == 0){
-            button.setBackground(new Color(255,255,255, 255));
+        if (currentColor.getAlpha() == 0) {
+            button.setBackground(new Color(COLOR_NUM, COLOR_NUM, COLOR_NUM, COLOR_NUM));
             button.setName("transparent");
         }
         else {

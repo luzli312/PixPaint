@@ -1,43 +1,51 @@
 package data_access;
 
+import static com.mongodb.client.model.Filters.eq;
+
+import java.io.IOException;
+import java.util.ArrayList;
+
+import org.bson.Document;
+import org.bson.conversions.Bson;
+
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import entity.User;
-import org.bson.Document;
-import org.bson.conversions.Bson;
-
-import java.io.IOException;
-import java.util.ArrayList;
-
-import static com.mongodb.client.model.Filters.eq;
-import com.mongodb.client.model.Filters;
 
 public class UserDataAccessObject {
+    private static final String USERNAME = "username";
+    private static final String PASSWORD = "password";
+    private static final String USER = "user";
+    private static final String TITLE = "title";
     /*
-    private final String username;
-    private final String password;
-
     public UserDataAccessObject (String username, String password) {
         this.username = username;
         this.password = password;
     }
     */
-    public void createUser(String username, String password) {
-        Document user = new Document("username", username)
-                .append("password", password);
 
-        Config.users.insertOne(user);
+    /**
+     * Creates a user in the database.
+     * @param username inputs the users username.
+     * @param password inputs the users password.
+     */
+    public void createUser(String username, String password) {
+        final Document user = new Document(USERNAME, username)
+                .append(PASSWORD, password);
+
+        Config.USERS.insertOne(user);
     }
 
     /**
      * Checks if a user already exists in the database with the same username.
+     * @param username inputs the users username.
      * @return true if a user already exists and false if not.
      */
     public boolean existsByName(String username) {
-        Document result = Config.users.find(eq("username", username)).first();
+        final Document result = Config.USERS.find(eq(USERNAME, username)).first();
         return result != null;
     }
 
@@ -49,55 +57,86 @@ public class UserDataAccessObject {
      * @return true if the password is correct and false otherwise.
      */
     public boolean passwordCorrect(String username, String password) {
-        Document result = Config.users.find(eq("username", username)).first();
+        final Document result = Config.USERS.find(eq(USERNAME, username)).first();
         assert result != null;
-        return password.equals(result.getString("password"));
+        return password.equals(result.getString(PASSWORD));
     }
 
+    /**
+     * Returns the user from the database.
+     * @param username inputs the users username.
+     * @return a User with the name and password from the database.
+     */
     public User getUser(String username) {
-        Document result = Config.users.find(eq("username", username)).first();
+        final Document result = Config.USERS.find(eq(USERNAME, username)).first();
         assert result != null;
-        final String name = result.getString("username");
-        final String password = result.getString("password");
+        final String name = result.getString(USERNAME);
+        final String password = result.getString(PASSWORD);
         return new User(name, password);
     }
 
+    /**
+     * Creates the project in the database.
+     * @param canvasData inputs the users Canvas Data.
+     */
     public void createProject(Document canvasData) {
-        Config.projects.insertOne(canvasData);
+        Config.PROJECTS.insertOne(canvasData);
     }
 
+    /**
+     * Gets the users project from the database.
+     * @param username inputs the users username.
+     * @param projectTitle inputs the project title of the users project.
+     * @return returns the project matching the title and username.
+     */
     public Document getProject(String username, String projectTitle) {
-        Bson filter = Filters.and(eq("user", username), eq("title", projectTitle));
-        return Config.projects.find(filter).first();
+        final Bson filter = Filters.and(eq(USER, username), eq(TITLE, projectTitle));
+        return Config.PROJECTS.find(filter).first();
     }
 
+    /**
+     * Gets all the users projects names.
+     * @param username inputs the users username.
+     * @return all the users project titles/
+     * @throws IOException thrown is not able to open database.
+     */
     public static ArrayList<String> getProjectNames(String username) throws IOException {
-        ArrayList<String> projects = new ArrayList<>();
-        try (MongoClient mongoClient = MongoClients.create(Config.getAPIToken())) {
-            MongoDatabase database = mongoClient.getDatabase("PixPaint");
-            MongoCollection<Document> collection = database.getCollection("projects");
+        final ArrayList<String> projects = new ArrayList<>();
+        try (MongoClient mongoClient = MongoClients.create(Config.getApiToken())) {
+            final MongoDatabase database = mongoClient.getDatabase("PixPaint");
+            final MongoCollection<Document> collection = database.getCollection("projects");
 
-            for (Document project : collection.find(eq("user", username))) {
-                projects.add(project.get("title").toString());
+            for (Document project : collection.find(eq(USER, username))) {
+                projects.add(project.get(TITLE).toString());
             }
         }
         return projects;
     }
 
+    /**
+     * Checks if the project already exists in the database.
+     * @param user inputs the users username.
+     * @param projectTitle inputs the projects current title.
+     * @return the project with the inputted title if exists otherwise null.
+     */
     public boolean projectExists(User user, String projectTitle) {
-        Document found = Config.projects.find(
+        final Document found = Config.PROJECTS.find(
                 Filters.and(
-                        Filters.eq("user", user.getUsername()),
-                        Filters.eq("title", projectTitle)
+                        Filters.eq(USER, user.getUsername()),
+                        Filters.eq(TITLE, projectTitle)
                 )).first();
         return found != null;
     }
 
+    /**
+     * Will overwrite/update the project in the database.
+     * @param canvasData the users current Canvas Data.
+     */
     public void updateProject(Document canvasData) {
-        Config.projects.replaceOne(
+        Config.PROJECTS.replaceOne(
                 Filters.and(
-                        Filters.eq("user", canvasData.getString("user")),
-                        Filters.eq("title", canvasData.getString("title"))
+                        Filters.eq(USER, canvasData.getString(USER)),
+                        Filters.eq(TITLE, canvasData.getString(TITLE))
                 ),
                 canvasData);
     }

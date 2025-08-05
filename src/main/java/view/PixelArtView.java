@@ -1,23 +1,43 @@
 package view;
 
-import entity.CanvasData;
-import data_access.UserDataAccessObject;
-import entity.User;
-import interface_adapter.logged_in.LoggedInState;
-import interface_adapter.canvas_grid.ChangeColorController;
-import interface_adapter.export.ExportController;
-import interface_adapter.load.LoadController;
-import usecase.color_canvas.PaletteSelection;
-import usecase.save_canvas.SaveCanvasInteractor;
-
-import javax.swing.*;
-import javax.swing.border.BevelBorder;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.UIManager;
+import javax.swing.border.BevelBorder;
+
+import data_access.UserDataAccessObject;
+import entity.CanvasData;
+import entity.User;
+import interface_adapter.canvas_grid.ChangeColorController;
+import interface_adapter.export.ExportController;
+import interface_adapter.load.LoadController;
+import interface_adapter.logged_in.LoggedInState;
+import usecase.color_canvas.PaletteSelection;
+import usecase.save_canvas.SaveCanvasInteractor;
+
 public class PixelArtView extends JPanel implements ActionListener {
+    private static final Integer TOOL_SIZE = 50;
+    private static final Integer BORDER_SIZE = 10;
+    private static final Integer COLOR_NUM = 255;
+    private static final Integer COLORTILE_SIZE = 40;
+    private static final Integer PALETTE_SIZE = 100;
+    private static final Integer CANVAS_SIZE = 400;
+    private static final Integer PALETTE_ROWS = 5;
+    private static final Integer PALETTE_COLS = 3;
+    private static final Integer PALETTE_GAP = 5;
+
     private final JPanel canvasPanel = new JPanel();
     private final JPanel palettePanel = new JPanel();
 
@@ -34,35 +54,35 @@ public class PixelArtView extends JPanel implements ActionListener {
         final LoadController loadController = new LoadController(username);
         final ExportController exportController = new ExportController(username);
 
-        this.setLayout(new BorderLayout(10, 10));
+        this.setLayout(new BorderLayout(BORDER_SIZE, BORDER_SIZE));
         this.setBackground(Color.LIGHT_GRAY);
-        this.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        this.setBorder(BorderFactory.createEmptyBorder(BORDER_SIZE, BORDER_SIZE, BORDER_SIZE, BORDER_SIZE));
 
         canvasPanel.setBackground(Color.WHITE);
-        canvasPanel.setPreferredSize(new Dimension(400, 400));
+        canvasPanel.setPreferredSize(new Dimension(CANVAS_SIZE, CANVAS_SIZE));
         canvasGridPanel = new CanvasGridPanel(new ChangeColorController());
         canvasPanel.add(canvasGridPanel);
 
-        palettePanel.setLayout(new GridLayout(5, 3, 5, 5));
-        palettePanel.setPreferredSize(new Dimension(100, 100));
+        palettePanel.setLayout(new GridLayout(PALETTE_ROWS, PALETTE_COLS, PALETTE_GAP, PALETTE_GAP));
+        palettePanel.setPreferredSize(new Dimension(PALETTE_SIZE, PALETTE_SIZE));
 
-        Color[] colors = {
-                Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW, Color.ORANGE,
-                Color.CYAN, Color.MAGENTA, Color.PINK, Color.DARK_GRAY, Color.BLACK
+        final Color[] colors = {
+            Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW, Color.ORANGE,
+            Color.CYAN, Color.MAGENTA, Color.PINK, Color.DARK_GRAY, Color.BLACK,
         };
 
         // Create new PaletteSelection object to store selected color from palette.
-        PaletteSelection paletteSelection = new PaletteSelection(canvasGridPanel);
+        final PaletteSelection paletteSelection = new PaletteSelection(canvasGridPanel);
 
         for (Color color : colors) {
-            JButton colorTile = new JButton();
+            final JButton colorTile = new JButton();
             colorTile.setBackground(color);
             colorTile.setOpaque(true);
             colorTile.setBorderPainted(true);
             colorTile.setFocusPainted(false);
             colorTile.setContentAreaFilled(true);
-            colorTile.setPreferredSize(new Dimension(40, 40));
-            colorTile.setMaximumSize(new Dimension(40, 40));
+            colorTile.setPreferredSize(new Dimension(COLORTILE_SIZE, COLORTILE_SIZE));
+            colorTile.setMaximumSize(new Dimension(COLORTILE_SIZE, COLORTILE_SIZE));
             colorTile.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
             palettePanel.add(colorTile);
 
@@ -87,13 +107,14 @@ public class PixelArtView extends JPanel implements ActionListener {
             );
         }
 
-        try{
+        try {
             UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
-        }catch(Exception e){
-            e.printStackTrace();
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
         }
 
-        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 15, 5));
+        final JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 15, 5));
         buttonPanel.add(saveButton);
         buttonPanel.add(loadButton);
         buttonPanel.add(exportButton);
@@ -113,25 +134,26 @@ public class PixelArtView extends JPanel implements ActionListener {
             public void actionPerformed(ActionEvent e) {
                 try {
                     loadController.execute(canvasGridPanel);
-                } catch (IOException e1) {
-                    throw new RuntimeException(e1);
+                }
+                catch (IOException ex) {
+                    throw new RuntimeException(ex);
                 }
             }
         });
 
-        ImageIcon brushIcon = new ImageIcon(getClass().getResource("/brush.png"));
-        ImageIcon eraserIcon = new ImageIcon(getClass().getResource("/eraser.png"));
+        final ImageIcon brushIcon = new ImageIcon(getClass().getResource("/brush.png"));
+        final ImageIcon eraserIcon = new ImageIcon(getClass().getResource("/eraser.png"));
 
         brushButton = new JButton(brushIcon);
         brushButton.setBorderPainted(true);
         brushButton.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
-        brushButton.setPreferredSize(new Dimension(50, 50));
+        brushButton.setPreferredSize(new Dimension(TOOL_SIZE, TOOL_SIZE));
         brushButton.setToolTipText("Brush Tool");
 
         eraserButton = new JButton(eraserIcon);
         eraserButton.setBorderPainted(true);
         eraserButton.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
-        eraserButton.setPreferredSize(new Dimension(50, 50));
+        eraserButton.setPreferredSize(new Dimension(TOOL_SIZE, TOOL_SIZE));
         eraserButton.setToolTipText("Eraser Tool");
         eraserButton.addActionListener(new ActionListener() {
             @Override
@@ -140,7 +162,8 @@ public class PixelArtView extends JPanel implements ActionListener {
                     brushButton.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
                 }
                 eraserButton.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
-                canvasGridPanel.getChangeColorController().setCurrentColor(new Color(255, 255, 255, 0));
+                canvasGridPanel.getChangeColorController().setCurrentColor(
+                        new Color(COLOR_NUM, COLOR_NUM, COLOR_NUM, 0));
             }
         });
 
@@ -156,12 +179,12 @@ public class PixelArtView extends JPanel implements ActionListener {
             }
         });
 
-        JPanel toolPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 5));
+        final JPanel toolPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 5));
         toolPanel.add(brushButton);
         toolPanel.add(eraserButton);
 
-        JPanel rightPanel = new JPanel();
-        rightPanel.setLayout(new BorderLayout(10, 10));
+        final JPanel rightPanel = new JPanel();
+        rightPanel.setLayout(new BorderLayout(BORDER_SIZE, BORDER_SIZE));
         rightPanel.add(toolPanel, BorderLayout.NORTH);
         rightPanel.add(palettePanel, BorderLayout.CENTER);
         rightPanel.add(buttonPanel, BorderLayout.SOUTH);
@@ -173,33 +196,34 @@ public class PixelArtView extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == saveButton) {
-            String projectName = JOptionPane.showInputDialog(
+            final String projectName = JOptionPane.showInputDialog(
                     this, "Enter project name:", "Save Project", JOptionPane.PLAIN_MESSAGE);
 
             if (projectName == null || projectName.trim().isEmpty()) {
                 new ErrorSuccessView("Error", "Empty project name!");
-                return;
             }
 
-            UserDataAccessObject userDataAccessObject = new UserDataAccessObject();
-            User currentUser = LoggedInState.getCurrentUser();
+            final UserDataAccessObject userDataAccessObject = new UserDataAccessObject();
+            final User currentUser = LoggedInState.getCurrentUser();
 
             try {
                 if (userDataAccessObject.projectExists(currentUser, projectName)) {
-                    int option = JOptionPane.showConfirmDialog(this,
+                    final int option = JOptionPane.showConfirmDialog(this,
                             "Project already exists. Overwrite?", "Overwrite",
                             JOptionPane.YES_NO_OPTION);
                     if (option != JOptionPane.YES_OPTION) {
                         return;
                     }
-                    CanvasData canvasData = new CanvasData(currentUser, projectName, canvasGridPanel);
+                    final CanvasData canvasData = new CanvasData(currentUser, projectName, canvasGridPanel);
                     userDataAccessObject.updateProject(canvasData.exportCanvasData());
                     new ErrorSuccessView("Success", "Project updated successfully!");
-                } else {
+                }
+                else {
                     new SaveCanvasInteractor().execute(currentUser, canvasGridPanel, projectName);
                     new ErrorSuccessView("Success", "Project saved successfully!");
                 }
-            } catch (Exception ex) {
+            }
+            catch (Exception ex) {
                 new ErrorSuccessView("Error", "Failed to save project: " + ex.getMessage());
             }
         }
