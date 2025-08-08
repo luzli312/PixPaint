@@ -9,6 +9,7 @@ import view.StartupWindow;
 public class Main {
 
     private static JFrame startupWindow;
+    private static JFrame pixPaint;
 
     /**
      * Creates the StartUpWindow to start running app.
@@ -23,7 +24,7 @@ public class Main {
      * @param username inputs the username of the user.
      */
     public static void openPixPaint(String username) {
-        final JFrame pixPaint = new JFrame(username + "'s PixPaint!");
+        pixPaint = new JFrame(username + "'s PixPaint!");
         final int width = 1000;
         final int height = 800;
         pixPaint.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -33,6 +34,13 @@ public class Main {
         pixPaint.setSize(width, height);
         pixPaint.setLocationRelativeTo(null);
         pixPaint.setVisible(true);
+    }
+
+    /**
+     * Method to close the main Canvas Grid application.
+     */
+    public static void closePixPaint() {
+        pixPaint.dispose();
     }
 
     /**

@@ -25,6 +25,15 @@ public final class LoggedInState {
         Main.openPixPaint(currentUser.getUsername());
     }
 
+    /**
+     * Logs out, closes the drawing window, and opens the startup window.
+     */
+    public static void logout() {
+        currentUser = null;
+        Main.closePixPaint();
+        Main.main(null);
+    }
+
     public static User getCurrentUser() {
         return currentUser;
     }

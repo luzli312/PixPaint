@@ -43,6 +43,7 @@ public class PixelArtView extends JPanel implements ActionListener {
 
     private final JButton brushButton;
     private final JButton eraserButton;
+    private final JButton logoutButton;
 
     private final JButton saveButton = new JButton("Save");
     private final JButton loadButton = new JButton("Load");
@@ -155,6 +156,9 @@ public class PixelArtView extends JPanel implements ActionListener {
         eraserButton.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
         eraserButton.setPreferredSize(new Dimension(TOOL_SIZE, TOOL_SIZE));
         eraserButton.setToolTipText("Eraser Tool");
+
+        logoutButton = new JButton("Logout");
+
         eraserButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -179,9 +183,18 @@ public class PixelArtView extends JPanel implements ActionListener {
             }
         });
 
+        // Make the logout button log the user out and change views.
+        logoutButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                LoggedInState.logout();
+            }
+        });
+
         final JPanel toolPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 5));
         toolPanel.add(brushButton);
         toolPanel.add(eraserButton);
+        toolPanel.add(logoutButton);
 
         final JPanel rightPanel = new JPanel();
         rightPanel.setLayout(new BorderLayout(BORDER_SIZE, BORDER_SIZE));
