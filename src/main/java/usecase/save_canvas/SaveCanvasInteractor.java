@@ -1,6 +1,6 @@
 package usecase.save_canvas;
 
-import data_access.UserDataAccessObject;
+import dataaccess.UserDataAccessObject;
 import entity.CanvasData;
 import entity.User;
 import view.CanvasGridPanel;

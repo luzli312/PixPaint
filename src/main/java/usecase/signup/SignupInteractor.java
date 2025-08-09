@@ -1,6 +1,6 @@
 package usecase.signup;
 
-import data_access.UserDataAccessObject;
+import dataaccess.UserDataAccessObject;
 import view.ErrorSuccessView;
 
 public class SignupInteractor {
@@ -9,8 +9,8 @@ public class SignupInteractor {
     private final SignupInputData input;
     private final UserDataAccessObject userDataAccessObject;
 
-    public SignupInteractor(SignupInputData input) {
-        this.input = input;
+    public SignupInteractor(String username, String password, String passwordConfirmation) {
+        this.input = new SignupInputData(username, password, passwordConfirmation);
         this.userDataAccessObject = new UserDataAccessObject();
     }
 

@@ -12,7 +12,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import usecase.login.LoginInputData;
 import usecase.login.LoginInteractor;
 
 /**
@@ -67,8 +66,7 @@ public class LoginView extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         // Sends login input to the LoginInteractor to check validity.
         if (e.getSource() == toLogin) {
-            final LoginInputData input = new LoginInputData(usernameInput.getText(), passwordInput.getText());
-            new LoginInteractor(input).execute();
+            new LoginInteractor(usernameInput.getText(), passwordInput.getText()).execute();
         }
         else if (e.getSource() == toSignUp) {
             cards.show(views, "Signup");

@@ -1,18 +1,12 @@
-package interface_adapter.load;
+package interfaceadapter.load;
 
-import java.awt.BorderLayout;
-import java.awt.CardLayout;
 import java.io.IOException;
-
-import javax.swing.JPanel;
 
 import usecase.load_canvas.LoadInterface;
 import view.CanvasGridPanel;
 import view.LoadView;
 
 public class LoadController implements LoadInterface {
-    private final JPanel main = new JPanel(new BorderLayout());
-    private final CardLayout cardLayout = new CardLayout();
     private final String username;
     private String projectTitle;
 
@@ -27,7 +21,7 @@ public class LoadController implements LoadInterface {
      * @throws IOException from creating LoadView.
      */
     public void execute(CanvasGridPanel canvasGridPanel) throws IOException {
-        new LoadView(username, main, cardLayout, canvasGridPanel, this);
+        new LoadView(username, canvasGridPanel, this);
     }
 
     public void setCurrentProject(String title) {

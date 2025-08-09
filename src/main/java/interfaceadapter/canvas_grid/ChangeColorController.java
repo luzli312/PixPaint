@@ -1,4 +1,4 @@
-package interface_adapter.canvas_grid;
+package interfaceadapter.canvas_grid;
 
 import java.awt.Color;
 
