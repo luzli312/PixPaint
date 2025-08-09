@@ -25,6 +25,7 @@ public class ImageExporter {
             final File outputFile = new File(filePath);
             ImageIO.write(image, format, outputFile);
             System.out.println("Image saved successfully to: " + filePath);
+            new ErrorSuccessView("Success", "Image exported successfully to: " + filePath);
         }
         catch (IOException ex) {
             System.err.println("Error saving image: " + ex.getMessage());

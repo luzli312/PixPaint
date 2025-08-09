@@ -1,6 +1,4 @@
-package data_access;
-
-import static com.mongodb.client.model.Filters.eq;
+package dataaccess;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,12 +18,6 @@ public class UserDataAccessObject {
     private static final String PASSWORD = "password";
     private static final String USER = "user";
     private static final String TITLE = "title";
-    /*
-    public UserDataAccessObject (String username, String password) {
-        this.username = username;
-        this.password = password;
-    }
-    */
 
     /**
      * Creates a user in the database.
@@ -45,7 +37,7 @@ public class UserDataAccessObject {
      * @return true if a user already exists and false if not.
      */
     public boolean existsByName(String username) {
-        final Document result = Config.USERS.find(eq(USERNAME, username)).first();
+        final Document result = Config.USERS.find(Filters.eq(USERNAME, username)).first();
         return result != null;
     }
 
@@ -57,7 +49,7 @@ public class UserDataAccessObject {
      * @return true if the password is correct and false otherwise.
      */
     public boolean passwordCorrect(String username, String password) {
-        final Document result = Config.USERS.find(eq(USERNAME, username)).first();
+        final Document result = Config.USERS.find(Filters.eq(USERNAME, username)).first();
         assert result != null;
         return password.equals(result.getString(PASSWORD));
     }
@@ -68,7 +60,7 @@ public class UserDataAccessObject {
      * @return a User with the name and password from the database.
      */
     public User getUser(String username) {
-        final Document result = Config.USERS.find(eq(USERNAME, username)).first();
+        final Document result = Config.USERS.find(Filters.eq(USERNAME, username)).first();
         assert result != null;
         final String name = result.getString(USERNAME);
         final String password = result.getString(PASSWORD);
@@ -90,7 +82,7 @@ public class UserDataAccessObject {
      * @return returns the project matching the title and username.
      */
     public Document getProject(String username, String projectTitle) {
-        final Bson filter = Filters.and(eq(USER, username), eq(TITLE, projectTitle));
+        final Bson filter = Filters.and(Filters.eq(USER, username), Filters.eq(TITLE, projectTitle));
         return Config.PROJECTS.find(filter).first();
     }
 
@@ -106,7 +98,7 @@ public class UserDataAccessObject {
             final MongoDatabase database = mongoClient.getDatabase("PixPaint");
             final MongoCollection<Document> collection = database.getCollection("projects");
 
-            for (Document project : collection.find(eq(USER, username))) {
+            for (Document project : collection.find(Filters.eq(USER, username))) {
                 projects.add(project.get(TITLE).toString());
             }
         }

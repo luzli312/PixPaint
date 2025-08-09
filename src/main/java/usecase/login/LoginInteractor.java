@@ -1,7 +1,7 @@
 package usecase.login;
 
-import data_access.UserDataAccessObject;
-import interface_adapter.logged_in.LoggedInState;
+import dataaccess.UserDataAccessObject;
+import interfaceadapter.logged_in.LoggedInState;
 import view.ErrorSuccessView;
 
 public class LoginInteractor {
@@ -9,8 +9,8 @@ public class LoginInteractor {
     private final LoginInputData input;
     private final UserDataAccessObject userDataAccessObject;
 
-    public LoginInteractor(LoginInputData input) {
-        this.input = input;
+    public LoginInteractor(String username, String password) {
+        this.input = new LoginInputData(username, password);
         this.userDataAccessObject = new UserDataAccessObject();
     }
 

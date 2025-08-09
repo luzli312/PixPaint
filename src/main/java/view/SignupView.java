@@ -11,7 +11,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import usecase.signup.SignupInputData;
 import usecase.signup.SignupInteractor;
 
 /**
@@ -50,23 +49,23 @@ public class SignupView extends JPanel implements ActionListener {
         inputLayout.setAutoCreateContainerGaps(true);
 
         // Create a sequential group for the vertical and horizontal axes.
-        GroupLayout.SequentialGroup vertical = inputLayout.createSequentialGroup();
-        GroupLayout.SequentialGroup horizontal = inputLayout.createSequentialGroup();
+        final GroupLayout.SequentialGroup vertical = inputLayout.createSequentialGroup();
+        final GroupLayout.SequentialGroup horizontal = inputLayout.createSequentialGroup();
 
         // Align labels and text field pairs vertically.
-        vertical.addGroup(inputLayout.createParallelGroup(GroupLayout.Alignment.BASELINE).
-                addComponent(username).addComponent(usernameInput));
-        vertical.addGroup(inputLayout.createParallelGroup(GroupLayout.Alignment.BASELINE).
-                addComponent(password).addComponent(passwordInput));
-        vertical.addGroup(inputLayout.createParallelGroup(GroupLayout.Alignment.BASELINE).
-                addComponent(confirmPassword).addComponent(passwordConfirmInput));
+        vertical.addGroup(inputLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                .addComponent(username).addComponent(usernameInput));
+        vertical.addGroup(inputLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                .addComponent(password).addComponent(passwordInput));
+        vertical.addGroup(inputLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                .addComponent(confirmPassword).addComponent(passwordConfirmInput));
         inputLayout.setVerticalGroup(vertical);
 
         // Align labels with other labels and text fields with other fields horizontally.
-        horizontal.addGroup(inputLayout.createParallelGroup(GroupLayout.Alignment.TRAILING).
-                addComponent(username).addComponent(password).addComponent(confirmPassword));
-        horizontal.addGroup(inputLayout.createParallelGroup().
-                addComponent(usernameInput).addComponent(passwordInput).addComponent(passwordConfirmInput));
+        horizontal.addGroup(inputLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                .addComponent(username).addComponent(password).addComponent(confirmPassword));
+        horizontal.addGroup(inputLayout.createParallelGroup()
+                .addComponent(usernameInput).addComponent(passwordInput).addComponent(passwordConfirmInput));
         inputLayout.setHorizontalGroup(horizontal);
 
         final JPanel signupButtons = new JPanel();
@@ -95,9 +94,8 @@ public class SignupView extends JPanel implements ActionListener {
             cards.show(views, "Login");
         }
         else if (e.getSource() == toSignup) {
-            final SignupInputData input = new SignupInputData(usernameInput.getText(), passwordInput.getText(),
-                    passwordConfirmInput.getText());
-            new SignupInteractor(input).execute();
+            new SignupInteractor(usernameInput.getText(), passwordInput.getText(),
+                    passwordConfirmInput.getText()).execute();
         }
     }
 

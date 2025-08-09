@@ -4,9 +4,9 @@ import java.awt.Color;
 
 import org.bson.Document;
 
-import data_access.UserDataAccessObject;
+import dataaccess.UserDataAccessObject;
 import entity.CanvasData;
-import interface_adapter.load.LoadController;
+import interfaceadapter.load.LoadController;
 import view.CanvasGridPanel;
 
 public class LoadCanvasInteractor {

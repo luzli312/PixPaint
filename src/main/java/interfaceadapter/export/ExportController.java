@@ -1,4 +1,4 @@
-package interface_adapter.export;
+package interfaceadapter.export;
 
 import usecase.export_canvas.ExportCanvasInteractor;
 import usecase.export_canvas.ExportInterface;
