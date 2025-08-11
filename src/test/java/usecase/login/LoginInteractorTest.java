@@ -22,6 +22,7 @@ public class LoginInteractorTest {
         assertEquals("password", LoggedInState.getCurrentUser().getPassword());
 
         LoggedInState.logout();
+        userDataAccessObject.deleteUser("test");
 }
 
     @Test

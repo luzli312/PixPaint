@@ -3,13 +3,10 @@ package dataaccess;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import com.mongodb.client.*;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import entity.User;
 
@@ -131,5 +128,23 @@ public class UserDataAccessObject {
                         Filters.eq(TITLE, canvasData.getString(TITLE))
                 ),
                 canvasData);
+    }
+
+    /**
+     * Removes the corresponding user from the database.
+     * @param username the name of the user to be removed.
+     */
+    public void deleteUser(String username) {
+        Config.USERS.deleteOne(Filters.eq(USERNAME, username));
+    }
+
+    /**
+     * Counts all users with the corresponding username.
+     * The return value should be at most 1 if the program is working correctly.
+     * @param username of the users to be matched.
+     * @return the number of users with this username.
+     */
+    public long numberUsers(String username) {
+        return Config.USERS.countDocuments(Filters.eq(USERNAME, username));
     }
 }
