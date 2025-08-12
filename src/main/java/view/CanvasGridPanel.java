@@ -10,7 +10,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import interfaceadapter.canvas_grid.ChangeColorController;
+import interface_adapter.canvas_grid.ChangeColorController;
 
 public class CanvasGridPanel extends JPanel {
     // Create 32 x 32 grid, white squares, maybe add black lines to separate each square.

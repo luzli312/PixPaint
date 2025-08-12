@@ -5,7 +5,7 @@ import java.awt.Dimension;
 
 import javax.swing.JPanel;
 
-import interfaceadapter.canvas_grid.ChangeColorController;
+import interface_adapter.canvas_grid.ChangeColorController;
 
 public class CanvasPanel extends JPanel {
     private static final Integer CANVAS_SIZE = 400;

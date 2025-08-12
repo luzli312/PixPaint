@@ -13,7 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
-import dataaccess.UserDataAccessObject;
+import data_access.UserDataAccessObject;
 
 public class LoadPanel extends JPanel {
     private static final Integer HEADER_SIZE = 35;

@@ -13,9 +13,9 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.BevelBorder;
 
-import interfaceadapter.export.ExportController;
-import interfaceadapter.load.LoadController;
-import usecase.color_canvas.PaletteSelection;
+import interface_adapter.export.ExportController;
+import interface_adapter.load.LoadController;
+import use_case.color_canvas.PaletteSelection;
 
 public class PalettePanel extends JPanel {
     private static final Integer PALETTE_ROWS = 5;

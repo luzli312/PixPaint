@@ -8,9 +8,9 @@ import java.io.IOException;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import interfaceadapter.export.ExportController;
-import interfaceadapter.load.LoadController;
-import interfaceadapter.save.SaveController;
+import interface_adapter.export.ExportController;
+import interface_adapter.load.LoadController;
+import interface_adapter.save.SaveController;
 
 public class FunctionsButtonPanel extends JPanel {
     private static final Integer HGAP = 15;

@@ -12,7 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import usecase.login.LoginInteractor;
+import use_case.login.LoginInteractor;
 
 /**
  * This class contains the JPanel setup for the user login view.

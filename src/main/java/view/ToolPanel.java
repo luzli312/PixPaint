@@ -12,8 +12,8 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.border.BevelBorder;
 
-import interfaceadapter.logged_in.LoggedInState;
-import usecase.color_canvas.PaletteSelection;
+import interface_adapter.logged_in.LoggedInState;
+import use_case.color_canvas.PaletteSelection;
 
 public class ToolPanel extends JPanel {
     private static final Integer TOOL_SIZE = 50;
