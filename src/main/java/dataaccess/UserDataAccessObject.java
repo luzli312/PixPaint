@@ -3,10 +3,13 @@ package dataaccess;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import com.mongodb.client.*;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import entity.User;
 
@@ -47,7 +50,6 @@ public class UserDataAccessObject {
      */
     public boolean passwordCorrect(String username, String password) {
         final Document result = Config.USERS.find(Filters.eq(USERNAME, username)).first();
-        assert result != null;
         return password.equals(result.getString(PASSWORD));
     }
 
@@ -58,7 +60,6 @@ public class UserDataAccessObject {
      */
     public User getUser(String username) {
         final Document result = Config.USERS.find(Filters.eq(USERNAME, username)).first();
-        assert result != null;
         final String name = result.getString(USERNAME);
         final String password = result.getString(PASSWORD);
         return new User(name, password);
