@@ -2,14 +2,10 @@ package usecase.save_canvas;
 
 import dataaccess.UserDataAccessObject;
 import interfaceadapter.canvas_grid.ChangeColorController;
-import interfaceadapter.export.ExportController;
-import interfaceadapter.load.LoadController;
-import interfaceadapter.save.SaveController;
+import interfaceadapter.logged_in.LoggedInState;
 import org.junit.Test;
 import usecase.login.LoginInteractor;
 import view.CanvasGridPanel;
-import view.PalettePanel;
-import view.PixelArtView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,9 +20,6 @@ public class SaveCanvasInteractorTest {
         new LoginInteractor("luzli", "mimi").execute();
 
         CanvasGridPanel canvasGridPanel = new CanvasGridPanel(new ChangeColorController());
-        PixelArtView pixelArtView = new PixelArtView("luzli");
-        PalettePanel palettePanel = new PalettePanel(canvasGridPanel, new LoadController("luzli"),
-                new ExportController("luzli"), pixelArtView);
 
         UserDataAccessObject userDataAccessObject = new UserDataAccessObject();
 
@@ -35,7 +28,7 @@ public class SaveCanvasInteractorTest {
         gridSquare.doClick();
         assertEquals(Color.BLACK, gridSquare.getBackground());
 
-        new SaveController("save test").execute(pixelArtView, canvasGridPanel);
+        new SaveCanvasInteractor().execute(LoggedInState.getCurrentUser(), canvasGridPanel, "save test");
 
         Color savedColor = parseCanvasData(userDataAccessObject.getProject("luzli", "save test"))[0][0];
 
