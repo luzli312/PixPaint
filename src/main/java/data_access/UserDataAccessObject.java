@@ -50,7 +50,6 @@ public class UserDataAccessObject {
      */
     public boolean passwordCorrect(String username, String password) {
         final Document result = Config.USERS.find(Filters.eq(USERNAME, username)).first();
-        assert result != null;
         return password.equals(result.getString(PASSWORD));
     }
 
@@ -61,7 +60,6 @@ public class UserDataAccessObject {
      */
     public User getUser(String username) {
         final Document result = Config.USERS.find(Filters.eq(USERNAME, username)).first();
-        assert result != null;
         final String name = result.getString(USERNAME);
         final String password = result.getString(PASSWORD);
         return new User(name, password);
@@ -131,5 +129,32 @@ public class UserDataAccessObject {
                         Filters.eq(TITLE, canvasData.getString(TITLE))
                 ),
                 canvasData);
+    }
+
+    /**
+     * Removes the corresponding user from the database.
+     * @param username the name of the user to be removed.
+     */
+    public void deleteUser(String username) {
+        Config.USERS.deleteOne(Filters.eq(USERNAME, username));
+    }
+
+    /**
+     * Removes the corresponding user's project from the database.
+     * @param username the name of the user.
+     * @param projectTitle the name of the project to be deleted.
+     */
+    public void deleteProject(String username, String projectTitle) {
+        Config.PROJECTS.deleteOne(Filters.and(Filters.eq(USERNAME, username), Filters.eq(TITLE, projectTitle)));
+    }
+
+    /**
+     * Counts all users with the corresponding username.
+     * The return value should be at most 1 if the program is working correctly.
+     * @param username of the users to be matched.
+     * @return the number of users with this username.
+     */
+    public long numberUsers(String username) {
+        return Config.USERS.countDocuments(Filters.eq(USERNAME, username));
     }
 }

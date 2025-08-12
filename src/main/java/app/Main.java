@@ -40,13 +40,17 @@ public class Main {
      * Method to close the main Canvas Grid application.
      */
     public static void closePixPaint() {
-        pixPaint.dispose();
+        if (pixPaint != null) {
+            pixPaint.dispose();
+        }
     }
 
     /**
      * Closes the application and start up window.
      */
     public static void closeStartupWindow() {
-        startupWindow.dispose();
+        if (startupWindow != null) {
+            startupWindow.dispose();
+        }
     }
 }
