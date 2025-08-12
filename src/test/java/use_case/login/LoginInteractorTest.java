@@ -1,7 +1,7 @@
 package use_case.login;
 
-import dataaccess.UserDataAccessObject;
-import interfaceadapter.logged_in.LoggedInState;
+import data_access.UserDataAccessObject;
+import interface_adapter.logged_in.LoggedInState;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertEquals;

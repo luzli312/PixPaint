@@ -1,8 +1,8 @@
 package use_case.color_canvas;
 
-import interfaceadapter.canvas_grid.ChangeColorController;
-import interfaceadapter.export.ExportController;
-import interfaceadapter.load.LoadController;
+import interface_adapter.canvas_grid.ChangeColorController;
+import interface_adapter.export.ExportController;
+import interface_adapter.load.LoadController;
 import org.junit.Test;
 import view.CanvasGridPanel;
 import view.PalettePanel;
