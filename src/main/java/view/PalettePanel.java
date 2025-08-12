@@ -5,19 +5,19 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JPanel;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.*;
 import javax.swing.border.BevelBorder;
 
+import interfaceadapter.palette.ColorChooser;
 import interfaceadapter.export.ExportController;
 import interfaceadapter.load.LoadController;
 import usecase.colorcanvas.PaletteSelection;
 
 public class PalettePanel extends JPanel {
+
     private static final Integer PALETTE_ROWS = 5;
     private static final Integer PALETTE_COLS = 3;
     private static final Integer PALETTE_GAP = 5;
@@ -62,7 +62,7 @@ public class PalettePanel extends JPanel {
             this.add(colorTile);
             colorTiles[i] = colorTile;
 
-            // Add an action listener so that clicking the color tile changes the palette selection.
+            // Add an action listener so that left-clicking the color tile changes the palette selection.
             colorTile.addActionListener(
                     new ActionListener() {
                         @Override
@@ -81,6 +81,21 @@ public class PalettePanel extends JPanel {
                         }
                     }
             );
+
+            // Right click opens the color chooser dialog.
+            colorTile.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mousePressed(MouseEvent mouseEvent) {
+                    if (SwingUtilities.isRightMouseButton(mouseEvent)) {
+                        ColorChooser.openColorChooserDialog(
+                                PalettePanel.this,
+                                colorTile,
+                                paletteSelection,
+                                canvasGridPanel.getChangeColorController()
+                        );
+                    }
+                }
+            });
         }
 
         try {
