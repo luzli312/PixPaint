@@ -27,7 +27,7 @@ public class LoginInteractorTest {
 
     @Test
     public void wrongPasswordTest() {
-        LoginInputData inputData = new LoginInputData("test", "pasword");
+        LoginInputData inputData = new LoginInputData("luzli", "wrong");
 
         LoginInteractor loginInteractor = new LoginInteractor(inputData.getUsername(), inputData.getPassword());
         loginInteractor.execute();
