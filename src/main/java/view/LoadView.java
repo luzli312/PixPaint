@@ -10,8 +10,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
-import interface_adapter.load.LoadController;
-import use_case.load_canvas.LoadCanvasInteractor;
+import interfaceadapter.load.LoadController;
+import usecase.loadcanvas.LoadCanvasInteractor;
 
 public class LoadView extends JPanel {
     private static final Integer RESIZE = 10;

@@ -11,7 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import use_case.signup.SignupInteractor;
+import usecase.signup.SignupInteractor;
 
 /**
  * This class contains the JPanel setup for the user signup view.

@@ -6,8 +6,8 @@ import java.awt.Color;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
-import interface_adapter.export.ExportController;
-import interface_adapter.load.LoadController;
+import interfaceadapter.export.ExportController;
+import interfaceadapter.load.LoadController;
 
 public class PixelArtView extends JPanel {
     private static final Integer BORDER_SIZE = 10;
