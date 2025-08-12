@@ -1,6 +1,6 @@
 package use_case.signup;
 
-import dataaccess.UserDataAccessObject;
+import data_access.UserDataAccessObject;
 import org.junit.Test;
 
 import static junit.framework.TestCase.*;

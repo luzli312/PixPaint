@@ -1,12 +1,12 @@
 package use_case.load_canvas;
 
-import dataaccess.UserDataAccessObject;
+import data_access.UserDataAccessObject;
 import entity.CanvasData;
-import interfaceadapter.canvas_grid.ChangeColorController;
-import interfaceadapter.load.LoadController;
-import interfaceadapter.logged_in.LoggedInState;
+import interface_adapter.canvas_grid.ChangeColorController;
+import interface_adapter.load.LoadController;
+import interface_adapter.logged_in.LoggedInState;
 import org.junit.Test;
-import usecase.login.LoginInteractor;
+import use_case.login.LoginInteractor;
 import view.CanvasGridPanel;
 
 import javax.swing.*;
