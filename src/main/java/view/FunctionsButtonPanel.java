@@ -5,8 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-import javax.swing.JButton;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 import interfaceadapter.export.ExportController;
 import interfaceadapter.load.LoadController;
@@ -37,7 +36,9 @@ public class FunctionsButtonPanel extends JPanel {
         saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new SaveController().execute(pixelArtView, canvasGridPanel);
+                final String projectName = JOptionPane.showInputDialog(
+                        pixelArtView, "Enter project name:", "Save Project", JOptionPane.PLAIN_MESSAGE);
+                new SaveController(projectName).execute(pixelArtView, canvasGridPanel);
             }
         });
         loadButton.addActionListener(new ActionListener() {

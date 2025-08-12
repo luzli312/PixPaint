@@ -139,6 +139,15 @@ public class UserDataAccessObject {
     }
 
     /**
+     * Removes the corresponding user's project from the database.
+     * @param username the name of the user.
+     * @param projectTitle the name of the project to be deleted.
+     */
+    public void deleteProject(String username, String projectTitle) {
+        Config.PROJECTS.deleteOne(Filters.and(Filters.eq(USERNAME, username), Filters.eq(TITLE, projectTitle)));
+    }
+
+    /**
      * Counts all users with the corresponding username.
      * The return value should be at most 1 if the program is working correctly.
      * @param username of the users to be matched.
