@@ -11,18 +11,28 @@ import org.bson.Document;
 import view.CanvasGridPanel;
 
 public class CanvasData {
+    private static String titleAccess;
     private static final Integer SIZE = 32;
 
-    private final User user;
+    private final String username;
     private final String projectTitle;
     private final CanvasGridPanel canvasGridPanel;
     private JButton[][] canvasData;
 
-    public CanvasData(User user, String title, CanvasGridPanel canvasGridPanel) {
-        this.user = user;
+    public CanvasData(String username, String title, CanvasGridPanel canvasGridPanel) {
+        this.username = username;
         this.projectTitle = title;
         this.canvasGridPanel = canvasGridPanel;
         this.canvasData = canvasGridPanel.getAllCells();
+        setTitleAccess(projectTitle);
+    }
+
+    public static void setTitleAccess(String title) {
+        titleAccess = title;
+    }
+
+    public static String getProjectTitle() {
+        return titleAccess;
     }
 
     /**
@@ -59,7 +69,7 @@ public class CanvasData {
      * @return a Document with username, password, formatted canvas data.
      */
     public Document exportCanvasData() {
-        final Document result = new Document("user", user.getUsername())
+        final Document result = new Document("user", username)
                 .append("title", projectTitle);
         final String[][] formattedData = this.formatCanvasData();
         for (int i = 0; i < formattedData.length; i++) {

@@ -39,4 +39,8 @@ public class PixelArtView extends JPanel {
         this.add(canvasPanel, BorderLayout.CENTER);
         this.add(rightPanel, BorderLayout.EAST);
     }
+
+    public CanvasPanel getCanvasPanel() {
+        return canvasPanel;
+    }
 }

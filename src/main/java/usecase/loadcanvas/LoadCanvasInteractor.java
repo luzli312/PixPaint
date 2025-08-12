@@ -27,6 +27,7 @@ public class LoadCanvasInteractor implements LoadInputBoundary {
         final String title = loadInputData.getProjectTitle();
 
         final Document rawCanvasData = dataAccessInterface.getProject(username, title);
+        CanvasData.setTitleAccess(title);
 
         return CanvasData.parseCanvasData(rawCanvasData);
     }

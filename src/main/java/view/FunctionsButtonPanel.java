@@ -7,6 +7,7 @@ import java.io.IOException;
 
 import javax.swing.*;
 
+import entity.CanvasData;
 import interfaceadapter.export.ExportController;
 import interfaceadapter.load.LoadController;
 import interfaceadapter.save.SaveController;
@@ -27,16 +28,15 @@ public class FunctionsButtonPanel extends JPanel {
         this.add(loadButton);
         this.add(exportButton);
 
-        /*
         exportButton.addActionListener(
                 new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        exportController.execute(canvasGridPanel, loadController.getCurrentProject());
+                        exportController.execute(canvasGridPanel, CanvasData.getProjectTitle());
                     }
                 }
         );
-*/
+
         // Adding action listeners to the save and load buttons.
         saveButton.addActionListener(new ActionListener() {
             @Override
