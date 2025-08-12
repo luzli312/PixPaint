@@ -8,6 +8,7 @@ import interfaceadapter.loggedin.LoggedInState;
 import org.junit.Test;
 import usecase.login.LoginInteractor;
 import view.CanvasGridPanel;
+import view.PixelArtView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,9 +19,7 @@ public class LoadCanvasInteractorTest {
 
     @Test
     public void successTest() {
-        new LoginInteractor("luzli", "mimi").execute();
-
-        CanvasGridPanel canvasGridPanel = new CanvasGridPanel(new ChangeColorController());
+        CanvasGridPanel canvasGridPanel = new PixelArtView("luzli").getCanvasPanel().getCanvasGridPanel();
 
         UserDataAccessObject userDataAccessObject = new UserDataAccessObject();
 
@@ -29,18 +28,21 @@ public class LoadCanvasInteractorTest {
         gridSquare.doClick();
         assertEquals(Color.BLACK, gridSquare.getBackground());
 
-        CanvasData canvasData = new CanvasData(LoggedInState.getCurrentUser(), "load test",  canvasGridPanel);
+        CanvasData canvasData = new CanvasData("luzli", "load test",  canvasGridPanel);
 
         userDataAccessObject.createProject(canvasData.exportCanvasData());
 
-        gridSquare.setBackground(Color.WHITE);
-        assertEquals(Color.WHITE, gridSquare.getBackground());
+        gridSquare.setBackground(Color.RED);
+        assertEquals(Color.RED, gridSquare.getBackground());
 
-        new LoadCanvasInteractor().execute("luzli", canvasGridPanel, "load test",
-                new LoadController("luzli"));
+        LoadCanvasInteractor loadCanvasInteractor = new LoadCanvasInteractor(userDataAccessObject);
+
+        canvasGridPanel.loadCanvasGridPanel(
+                new LoadController(loadCanvasInteractor).execute("luzli", "load test"));
 
         assertEquals(Color.BLACK, gridSquare.getBackground());
 
         userDataAccessObject.deleteProject("luzli", "load test");
+
     }
 }

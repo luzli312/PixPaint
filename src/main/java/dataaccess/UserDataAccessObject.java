@@ -12,8 +12,13 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import entity.User;
+import usecase.loadcanvas.LoadDataAccessInterface;
+import usecase.login.LoginDataAccessInterface;
+import usecase.savecanvas.SaveDataAccessInterface;
+import usecase.signup.SignupDataAccessInterface;
 
-public class UserDataAccessObject {
+public class UserDataAccessObject implements LoadDataAccessInterface, LoginDataAccessInterface,
+        SaveDataAccessInterface, SignupDataAccessInterface {
     private static final String USERNAME = "username";
     private static final String PASSWORD = "password";
     private static final String USER = "user";
@@ -24,6 +29,7 @@ public class UserDataAccessObject {
      * @param username inputs the users username.
      * @param password inputs the users password.
      */
+    @Override
     public void createUser(String username, String password) {
         final Document user = new Document(USERNAME, username)
                 .append(PASSWORD, password);
@@ -36,6 +42,7 @@ public class UserDataAccessObject {
      * @param username inputs the users username.
      * @return true if a user already exists and false if not.
      */
+    @Override
     public boolean existsByName(String username) {
         final Document result = Config.USERS.find(Filters.eq(USERNAME, username)).first();
         return result != null;
@@ -48,6 +55,7 @@ public class UserDataAccessObject {
      * @param password the user inputted password for the account.
      * @return true if the password is correct and false otherwise.
      */
+    @Override
     public boolean passwordCorrect(String username, String password) {
         final Document result = Config.USERS.find(Filters.eq(USERNAME, username)).first();
         return password.equals(result.getString(PASSWORD));
@@ -58,6 +66,7 @@ public class UserDataAccessObject {
      * @param username inputs the users username.
      * @return a User with the name and password from the database.
      */
+    @Override
     public User getUser(String username) {
         final Document result = Config.USERS.find(Filters.eq(USERNAME, username)).first();
         final String name = result.getString(USERNAME);
@@ -69,6 +78,7 @@ public class UserDataAccessObject {
      * Creates the project in the database.
      * @param canvasData inputs the users Canvas Data.
      */
+    @Override
     public void createProject(Document canvasData) {
         Config.PROJECTS.insertOne(canvasData);
     }
@@ -79,6 +89,7 @@ public class UserDataAccessObject {
      * @param projectTitle inputs the project title of the users project.
      * @return returns the project matching the title and username.
      */
+    @Override
     public Document getProject(String username, String projectTitle) {
         final Bson filter = Filters.and(Filters.eq(USER, username), Filters.eq(TITLE, projectTitle));
         return Config.PROJECTS.find(filter).first();
@@ -90,7 +101,7 @@ public class UserDataAccessObject {
      * @return all the users project titles/
      * @throws IOException thrown is not able to open database.
      */
-    public static ArrayList<String> getProjectNames(String username) throws IOException {
+    public ArrayList<String> getProjectNames(String username) throws IOException {
         final ArrayList<String> projects = new ArrayList<>();
         try (MongoClient mongoClient = MongoClients.create(Config.getApiToken())) {
             final MongoDatabase database = mongoClient.getDatabase("PixPaint");

@@ -19,8 +19,7 @@ public class PaletteSelectionTest {
     @Test
     public void setCurrentSelectionTest() {
         CanvasGridPanel canvasGridPanel = new CanvasGridPanel(new ChangeColorController());
-        PalettePanel palettePanel = new PalettePanel(canvasGridPanel, new LoadController("luzli"),
-                new ExportController("luzli"), new PixelArtView("luzli"));
+        PalettePanel palettePanel = new PalettePanel(canvasGridPanel, new ExportController("luzli"), new PixelArtView("luzli"), "luzli");
 
         PaletteSelection paletteSelection = palettePanel.getPaletteSelection();
 
@@ -53,8 +52,7 @@ public class PaletteSelectionTest {
     @Test
     public void colorCanvasTest() {
         CanvasGridPanel canvasGridPanel = new CanvasGridPanel(new ChangeColorController());
-        PalettePanel palettePanel = new PalettePanel(canvasGridPanel, new LoadController("luzli"),
-                new ExportController("luzli"), new PixelArtView("luzli"));
+        PalettePanel palettePanel = new PalettePanel(canvasGridPanel, new ExportController("luzli"), new PixelArtView("luzli"), "luzli");
 
         JButton brushButton = palettePanel.getBrushButton();
                 brushButton.doClick();
@@ -80,8 +78,7 @@ public class PaletteSelectionTest {
     @Test
     public void eraseCanvasTest() {
         CanvasGridPanel canvasGridPanel = new CanvasGridPanel(new ChangeColorController());
-        PalettePanel palettePanel = new PalettePanel(canvasGridPanel, new LoadController("luzli"),
-                new ExportController("luzli"), new PixelArtView("luzli"));
+        PalettePanel palettePanel = new PalettePanel(canvasGridPanel, new ExportController("luzli"), new PixelArtView("luzli"), "luzli");
 
         JButton gridSquare = canvasGridPanel.getAllCells()[0][0];
         gridSquare.setBackground(Color.RED);
@@ -97,8 +94,7 @@ public class PaletteSelectionTest {
     @Test
     public void switchBrushEraseTest() {
         CanvasGridPanel canvasGridPanel = new CanvasGridPanel(new ChangeColorController());
-        PalettePanel palettePanel = new PalettePanel(canvasGridPanel, new LoadController("luzli"),
-                new ExportController("luzli"), new PixelArtView("luzli"));
+        PalettePanel palettePanel = new PalettePanel(canvasGridPanel, new ExportController("luzli"), new PixelArtView("luzli"), "luzli");
 
         JButton brushButton = palettePanel.getBrushButton();
         JButton eraserButton = palettePanel.getEraserButton();

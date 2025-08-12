@@ -38,7 +38,7 @@ public class SaveController implements SaveInterface {
                         "Project already exists. Overwrite?", "Overwrite",
                         JOptionPane.YES_NO_OPTION);
             if (option == JOptionPane.YES_OPTION) {
-                final CanvasData canvasData = new CanvasData(currentUser, projectName, canvasGridPanel);
+                final CanvasData canvasData = new CanvasData(currentUser.getUsername(), projectName, canvasGridPanel);
                 userDataAccessObject.updateProject(canvasData.exportCanvasData());
                 new ErrorSuccessView("Success", "Project updated successfully!");
             }
