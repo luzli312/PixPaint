@@ -13,7 +13,7 @@ public class SaveCanvasInteractor {
      * @param title the title of the project.
      */
     public void execute(User user, CanvasGridPanel canvasGridPanel, String title) {
-        final CanvasData canvasData = new CanvasData("luzli", title, canvasGridPanel);
+        final CanvasData canvasData = new CanvasData(user.getUsername(), title, canvasGridPanel);
         new UserDataAccessObject().createProject(canvasData.exportCanvasData());
     }
 }
