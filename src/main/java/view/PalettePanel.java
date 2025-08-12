@@ -23,6 +23,7 @@ public class PalettePanel extends JPanel {
     private static final Integer PALETTE_GAP = 5;
     private static final Integer PALETTE_SIZE = 100;
     private static final Integer COLORTILE_SIZE = 40;
+    private static final Integer COLORTILES = 10;
 
     private final JButton brushButton;
     private final JButton eraserButton;
@@ -35,6 +36,10 @@ public class PalettePanel extends JPanel {
     private final JPanel buttonPanel;
     private final JPanel toolPanel;
 
+    private final JButton[] colorTiles = new JButton[COLORTILES];
+
+    private final PaletteSelection paletteSelection;
+
     public PalettePanel(CanvasGridPanel canvasGridPanel, LoadController loadController,
                         ExportController exportController, PixelArtView pixelArtView) {
         this.setLayout(new GridLayout(PALETTE_ROWS, PALETTE_COLS, PALETTE_GAP, PALETTE_GAP));
@@ -46,11 +51,11 @@ public class PalettePanel extends JPanel {
         };
 
         // Create new PaletteSelection object to store selected color from palette.
-        final PaletteSelection paletteSelection = new PaletteSelection(canvasGridPanel);
+        paletteSelection = new PaletteSelection(canvasGridPanel);
 
-        for (Color color : colors) {
+        for (int i = 0; i < COLORTILES; i++) {
             final JButton colorTile = new JButton();
-            colorTile.setBackground(color);
+            colorTile.setBackground(colors[i]);
             colorTile.setOpaque(true);
             colorTile.setBorderPainted(true);
             colorTile.setFocusPainted(false);
@@ -59,6 +64,7 @@ public class PalettePanel extends JPanel {
             colorTile.setMaximumSize(new Dimension(COLORTILE_SIZE, COLORTILE_SIZE));
             colorTile.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
             this.add(colorTile);
+            colorTiles[i] = colorTile;
 
             // Add an action listener so that clicking the color tile changes the palette selection.
             colorTile.addActionListener(
@@ -106,4 +112,21 @@ public class PalettePanel extends JPanel {
     public JPanel getToolPanel() {
         return toolPanel;
     }
+
+    public JButton[] getColorTiles() {
+        return colorTiles;
+    }
+
+    public PaletteSelection getPaletteSelection() {
+        return paletteSelection;
+    }
+
+    public JButton getBrushButton() {
+        return brushButton;
+    }
+
+    public JButton getEraserButton() {
+        return eraserButton;
+    }
+
 }
