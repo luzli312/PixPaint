@@ -24,7 +24,7 @@ public class LoadPanel extends JPanel {
     private final Integer maxLength;
 
     public LoadPanel(String username, JButton toCanvas) throws IOException {
-        this.projectList = UserDataAccessObject.getProjectNames(username);
+        this.projectList = new UserDataAccessObject().getProjectNames(username);
 
         loadTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
 

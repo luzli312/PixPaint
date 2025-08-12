@@ -10,8 +10,11 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
+import dataaccess.UserDataAccessObject;
+import entity.User;
 import interfaceadapter.load.LoadController;
 import usecase.loadcanvas.LoadCanvasInteractor;
+import usecase.loadcanvas.LoadInputBoundary;
 
 public class LoadView extends JPanel {
     private static final Integer RESIZE = 10;
@@ -21,8 +24,7 @@ public class LoadView extends JPanel {
 
     private final JFrame startFrame = new JFrame("Load Project");
 
-    public LoadView(String username, CanvasGridPanel canvasGridPanel,
-                    LoadController loadController) throws IOException {
+    public LoadView(String username, CanvasGridPanel canvasGridPanel) throws IOException {
         final LoadPanel loadPanel = new LoadPanel(username, toCanvas);
         final JPanel projectBoxes = loadPanel.getProjectBoxes();
 
@@ -42,7 +44,10 @@ public class LoadView extends JPanel {
                         for (Component component : projectBoxes.getComponents()) {
                             if (component instanceof JRadioButton && ((JRadioButton) component).isSelected()) {
                                 final String projname = ((JRadioButton) component).getText();
-                                new LoadCanvasInteractor().execute(username, canvasGridPanel, projname, loadController);
+                                final LoadInputBoundary loadCanvasInteractor = new LoadCanvasInteractor(
+                                        new UserDataAccessObject());
+                                canvasGridPanel.loadCanvasGridPanel(
+                                        new LoadController(loadCanvasInteractor).execute(username, projname));
                                 startFrame.dispose();
                             }
 

@@ -4,48 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4b4ac924-1974-4258-bada-504cd15b44d9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/usecase/loadcanvas/LoadDataAccessObject.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/usecase/login/LoginDataAccessObject.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/usecase/savecanvas/SaveDataAccessObject.java" afterDir="false" />
+    <list default="true" id="4b4ac924-1974-4258-bada-504cd15b44d9" name="Changes" comment="fixed package names">
+      <change afterPath="$PROJECT_DIR$/src/main/java/usecase/loadcanvas/LoadDataAccessInterface.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/usecase/loadcanvas/LoadInputBoundary.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/usecase/loadcanvas/LoadInputData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/usecase/login/LoginDataAccessInterface.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/usecase/savecanvas/SaveDataAccessInterface.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/usecase/signup/SignupDataAccessInterface.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/data_access/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dataaccess/Config.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/data_access/UserDataAccessObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dataaccess/UserDataAccessObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/canvas_grid/ChangeColorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/interfaceadapter/canvasgrid/ChangeColorController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/export/ExportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/interfaceadapter/export/ExportController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/load/LoadController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/interfaceadapter/load/LoadController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/logged_in/LoggedInState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/interfaceadapter/loggedin/LoggedInState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/save/SaveController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/interfaceadapter/save/SaveController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/color_canvas/ColorCanvasInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/usecase/colorcanvas/ColorCanvasInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/color_canvas/PaletteSelection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/usecase/colorcanvas/PaletteSelection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/export_canvas/ExportCanvasInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/usecase/exportcanvas/ExportCanvasInteractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/export_canvas/ExportInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/usecase/exportcanvas/ExportInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/export_canvas/ImageExporter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/usecase/exportcanvas/ImageExporter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/load_canvas/LoadCanvasInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/usecase/loadcanvas/LoadCanvasInteractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/load_canvas/LoadDataAccessObject.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/load_canvas/LoadInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/usecase/loadcanvas/LoadInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/login/LoginInputData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/usecase/login/LoginInputData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/login/LoginInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/usecase/login/LoginInteractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/save_canvas/SaveCanvasInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/usecase/savecanvas/SaveCanvasInteractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/save_canvas/SaveInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/usecase/savecanvas/SaveInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/signup/SignupInputData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/usecase/signup/SignupInputData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/signup/SignupInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/usecase/signup/SignupInteractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/CanvasGridPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/CanvasGridPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/CanvasPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/CanvasPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dataaccess/UserDataAccessObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dataaccess/UserDataAccessObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/interfaceadapter/load/LoadController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/interfaceadapter/load/LoadController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/usecase/loadcanvas/LoadCanvasInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/usecase/loadcanvas/LoadCanvasInteractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/usecase/loadcanvas/LoadInterface.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/view/FunctionsButtonPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/FunctionsButtonPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/view/LoadPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/LoadPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/view/LoadView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/LoadView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/LoginView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/LoginView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/view/PalettePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/PalettePanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/view/PixelArtView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/PixelArtView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/SignupView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/SignupView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/ToolPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/ToolPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/use_case/color_canvas/PaletteSelectionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/usecase/colorcanvas/PaletteSelectionTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/use_case/export_canvas/ExportCanvasInteractorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/usecase/exportcanvas/ExportCanvasInteractorTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/use_case/load_canvas/LoadCanvasInteractorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/usecase/loadcanvas/LoadCanvasInteractorTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/use_case/login/LoginInteractorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/usecase/login/LoginInteractorTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/use_case/save_canvas/SaveCanvasInteractorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/usecase/savecanvas/SaveCanvasInteractorTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/use_case/signup/SignupInteractorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/usecase/signup/SignupInteractorTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/usecase/colorcanvas/PaletteSelectionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/usecase/colorcanvas/PaletteSelectionTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/usecase/loadcanvas/LoadCanvasInteractorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/usecase/loadcanvas/LoadCanvasInteractorTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,8 +32,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -85,11 +62,16 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.Main.executor": "Run",
     "Application.MongoClientConnectionExample.executor": "Run",
     "Application.QuickStart.executor": "Run",
+    "JUnit.LoadCanvasInteractorTest.successTest.executor": "Run",
+    "JUnit.PaletteSelectionTest.colorCanvasTest.executor": "Run",
+    "JUnit.PaletteSelectionTest.setCurrentSelectionTest.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
     "git-widget-placeholder": "luz.li",
     "ignore.virus.scanning.warn.message": "true",
     "node.js.detected.package.eslint": "true",
@@ -109,12 +91,67 @@
       <recent name="C:\Users\Luz\IdeaProjects\PixPaint\src" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.PaletteSelectionTest.colorCanvasTest">
+    <configuration name="LoadCanvasInteractorTest.successTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="PixPaint" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="usecase.loadcanvas.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="usecase.loadcanvas" />
+      <option name="MAIN_CLASS_NAME" value="usecase.loadcanvas.LoadCanvasInteractorTest" />
+      <option name="METHOD_NAME" value="successTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PaletteSelectionTest.colorCanvasTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="PixPaint" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="usecase.colorcanvas.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="usecase.colorcanvas" />
+      <option name="MAIN_CLASS_NAME" value="usecase.colorcanvas.PaletteSelectionTest" />
+      <option name="METHOD_NAME" value="colorCanvasTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PaletteSelectionTest.setCurrentSelectionTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="PixPaint" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="usecase.colorcanvas.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="usecase.colorcanvas" />
+      <option name="MAIN_CLASS_NAME" value="usecase.colorcanvas.PaletteSelectionTest" />
+      <option name="METHOD_NAME" value="setCurrentSelectionTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.PaletteSelectionTest.colorCanvasTest" />
+        <item itemvalue="JUnit.PaletteSelectionTest.setCurrentSelectionTest" />
+        <item itemvalue="JUnit.LoadCanvasInteractorTest.successTest" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -136,9 +173,22 @@
       <workItem from="1752277571813" duration="2569000" />
       <workItem from="1752281537753" duration="297000" />
     </task>
+    <task id="LOCAL-00001" summary="fixed package names">
+      <option name="closed" value="true" />
+      <created>1755010651530</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1755010651530</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="fixed package names" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed package names" />
   </component>
 </project>

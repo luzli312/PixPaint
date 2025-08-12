@@ -29,10 +29,6 @@ public class PalettePanel extends JPanel {
     private final JButton eraserButton;
     private final JButton logoutButton;
 
-    private final JButton saveButton = new JButton("Save");
-    private final JButton loadButton = new JButton("Load");
-    private final JButton exportButton = new JButton("Export");
-
     private final JPanel buttonPanel;
     private final JPanel toolPanel;
 
@@ -40,8 +36,8 @@ public class PalettePanel extends JPanel {
 
     private final PaletteSelection paletteSelection;
 
-    public PalettePanel(CanvasGridPanel canvasGridPanel, LoadController loadController,
-                        ExportController exportController, PixelArtView pixelArtView) {
+    public PalettePanel(CanvasGridPanel canvasGridPanel,
+                        ExportController exportController, PixelArtView pixelArtView, String username) {
         this.setLayout(new GridLayout(PALETTE_ROWS, PALETTE_COLS, PALETTE_GAP, PALETTE_GAP));
         this.setPreferredSize(new Dimension(PALETTE_SIZE, PALETTE_SIZE));
 
@@ -95,8 +91,8 @@ public class PalettePanel extends JPanel {
             ex.printStackTrace();
         }
 
-        this.buttonPanel = new FunctionsButtonPanel(saveButton, loadButton, exportButton,
-                loadController, exportController, canvasGridPanel, pixelArtView);
+        this.buttonPanel = new FunctionsButtonPanel(exportController, canvasGridPanel, pixelArtView,
+                username);
 
         brushButton = new JButton();
         eraserButton = new JButton();

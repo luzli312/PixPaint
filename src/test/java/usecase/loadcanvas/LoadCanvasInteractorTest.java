@@ -36,8 +36,8 @@ public class LoadCanvasInteractorTest {
         gridSquare.setBackground(Color.WHITE);
         assertEquals(Color.WHITE, gridSquare.getBackground());
 
-        new LoadCanvasInteractor().execute("luzli", canvasGridPanel, "load test",
-                new LoadController("luzli"));
+        LoadInputData test = new LoadInputData("luzli", "load test");
+        new LoadCanvasInteractor(userDataAccessObject).execute(test);
 
         assertEquals(Color.BLACK, gridSquare.getBackground());
 

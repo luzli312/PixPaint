@@ -15,14 +15,19 @@ public class FunctionsButtonPanel extends JPanel {
     private static final Integer HGAP = 15;
     private static final Integer VGAP = 5;
 
-    public FunctionsButtonPanel(JButton saveButton, JButton loadButton, JButton exportButton,
-                                LoadController loadController, ExportController exportController,
-                                CanvasGridPanel canvasGridPanel, PixelArtView pixelArtView) {
+    public FunctionsButtonPanel(ExportController exportController,
+                                CanvasGridPanel canvasGridPanel, PixelArtView pixelArtView, String username) {
         this.setLayout(new FlowLayout(FlowLayout.CENTER, HGAP, VGAP));
+
+        final JButton saveButton = new JButton("Save");
+        final JButton loadButton = new JButton("Load");
+        final JButton exportButton = new JButton("Export");
+
         this.add(saveButton);
         this.add(loadButton);
         this.add(exportButton);
 
+        /*
         exportButton.addActionListener(
                 new ActionListener() {
                     @Override
@@ -31,7 +36,7 @@ public class FunctionsButtonPanel extends JPanel {
                     }
                 }
         );
-
+*/
         // Adding action listeners to the save and load buttons.
         saveButton.addActionListener(new ActionListener() {
             @Override
@@ -45,7 +50,7 @@ public class FunctionsButtonPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    loadController.execute(canvasGridPanel);
+                    new LoadView(username, canvasGridPanel);
                 }
                 catch (IOException ex) {
                     throw new RuntimeException(ex);

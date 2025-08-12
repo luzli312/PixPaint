@@ -1,34 +1,25 @@
 package interfaceadapter.load;
 
-import java.io.IOException;
+import java.awt.*;
 
-import usecase.loadcanvas.LoadInterface;
-import view.CanvasGridPanel;
-import view.LoadView;
+import usecase.loadcanvas.LoadInputBoundary;
+import usecase.loadcanvas.LoadInputData;
 
-public class LoadController implements LoadInterface {
-    private final String username;
-    private String projectTitle;
+public class LoadController {
+    private final LoadInputBoundary loadCanvasInteractor;
 
-    public LoadController(String username) {
-        this.projectTitle = username + "_Project";
-        this.username = username;
+    public LoadController(LoadInputBoundary loadCanvasInteractor) {
+        this.loadCanvasInteractor = loadCanvasInteractor;
     }
 
     /**
-     * Executes the Load Use Case to open the load window.
-     * @param canvasGridPanel inputs the current canvas grid panel open.
-     * @throws IOException from creating LoadView.
+     * Executes the load use case.
+     * @param username the name of the user whose project is to be loaded.
+     * @param projectTitle the name of the project to be loaded.
      */
-    public void execute(CanvasGridPanel canvasGridPanel) throws IOException {
-        new LoadView(username, canvasGridPanel, this);
+    public Color[][] execute(String username, String projectTitle) {
+        final LoadInputData loadInputData = new LoadInputData(username, projectTitle);
+        return loadCanvasInteractor.execute(loadInputData);
     }
 
-    public void setCurrentProject(String title) {
-        this.projectTitle = title;
-    }
-
-    public String getCurrentProject() {
-        return projectTitle;
-    }
 }
