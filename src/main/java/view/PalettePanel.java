@@ -129,15 +129,4 @@ public class PalettePanel extends JPanel {
         return eraserButton;
     }
 
-    public JButton getSaveButton() {
-        return saveButton;
-    }
-
-    public JButton getLoadButton() {
-        return loadButton;
-    }
-
-    public JButton getExportButton() {
-        return exportButton;
-    }
 }
