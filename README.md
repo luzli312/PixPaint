@@ -2,25 +2,23 @@
 
 ## :notebook: Table of Contents
 
-- [About the Project](#star2-about-the-project)
-  * [Summary]
-  * [Features]
-  * [Screenshots]
-  * [Authors]
-- [Getting Started]
-  * [Prerequisites]
-  * [Installation]
-  * [Run Locally]
-- [Usage]
-- [Contributing]
-  * [Code of Conduct]
-- [License]
-- [Feedback]
+- [About the Project](#pushpin-about-the-project)
+  * [Summary](#scroll-summary)
+  * [Features](#star2-features)
+  * [How to Use](#pencil-how-to-use)
+  * [Authors](#stars-authors)
+- [Installation](#hammer-and-wrench-installation)
+- [License](#warning-license)
+- [Feedback](#loudspeaker-feedback)
+- [Contributing](#handshake-contributing)
+  * [How to Contribute](#spiral-notepad-how-to-contribute)
+  * [Guidelines for Good Merge Request](#ballot-box-with-check-guidelines-for-good-merge-request)
+  * [Merge Review Protocol](#mag-merge-review-protocol)
 
 ## :pushpin: About the Project
 
 ### :scroll: Summary
-**PixPaint** is a simple Java based pixel drawing app that lets anyone start creating pixel art within seconds on a 32x32 grid canvas.
+**PixPaint** is a simple Java based pixel drawing app that lets anyone start creating pixel art within seconds on a 32x32 grid canvas. The app works on both Windows and MacOS.
 - **Why we built it:** We wanted to make a lightweight drawing tool that is easy to understand and saves work online, so you can pick up where you left off on any device.
 - **What problem it solves:** Many art tools are complicated and overwhelming. PixPaint is fast and beginner-friendly; it ensures your work is safely stored in the cloud and easy to retrieve.
 
@@ -34,15 +32,37 @@
 - :rocket: **Easy to Use:** Clean interface that can be used by both beginners and experts
 
 ### :pencil: How to Use
-
-
-### :camera: Screenshots
-
+1. Log in/Sign up to your account. <br>
+   <img width="323" height="178" alt="Screenshot 2025-08-14 at 12 11 25 PM" src="https://github.com/user-attachments/assets/db58afa8-c9e9-4ead-9cf6-681e6bb8dbf6" />
+2. Draw your art piece, using the brush/eraser tool. Change the palette's color by rightclicking on the color tiles.
+   <img width="965" height="724" alt="Screenshot 2025-08-14 at 12 20 19 PM" src="https://github.com/user-attachments/assets/c1a576ce-9789-402a-a684-f6aab9935f35" />
+   <img width="960" height="720" alt="Screenshot 2025-08-14 at 12 12 59 PM" src="https://github.com/user-attachments/assets/e87efb66-8aa7-4793-9508-d58a1aabab9d" />
+3. Export your finished art piece as a PNG! <br>
+   <img width="640" height="640" alt="bunny" src="https://github.com/user-attachments/assets/1e96978f-e5c8-4399-a476-07e3ecaa14c6" />
 
 ### :stars: Authors
 - [Elizabeth Li](https://github.com/luzli312)
 - [Emily Escalante](https://github.com/EEsc05)
 - [Katie Lee](https://github.com/katfishy)
+
+## :hammer_and_wrench: Installation
+1. Create a MongoDB Account. Get your [MongoDB connection string](https://www.mongodb.com/docs/drivers/java/sync/current/get-started/#create-a-connection-string).
+2. Clone the repository.
+   ```
+   git clone https://github.com/luzli312/PixPaint.git
+   cd PixPaint
+   ```
+3. Set up MongoDB token.
+   - In the project folder, create a file named: `token.txt`
+   - Paste your account's **MongoDB connection string** inside it.
+4. Open the project in IntelliJ. If prompted, set the Project SDK to Java 17 or higher.
+5. Click the Run button after navigating to `src/main/java/app/Main.java`
+
+**Common Issues & Fixes**
+| Issue                             | Cause                                                              | Fix                                                                            |
+| -------------- | ------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| **`package view does not exist`** | IntelliJ did not set the `src/main/java` folder as the source root. | Right-click `src/main/java` → **Mark Directory as → Sources Root**.            |
+| **Cannot connect to MongoDB**     | Wrong token or network issue.                               | Verify the contents of `token.txt` and network connection.              
 
 ## :warning: License
 This project is licensed under the MIT License.
