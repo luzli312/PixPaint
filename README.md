@@ -61,7 +61,7 @@
 **Common Issues & Fixes**
 | Issue                             | Cause                                                              | Fix                                                                            |
 | -------------- | ------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| **`package view does not exist`** | IntelliJ did not set the `src/main/java` folder as the source root. | Right-click `src/main/java` → **Mark Directory as → Sources Root**.            |
+| **Package view does not exist** | IntelliJ did not set the `src/main/java` folder as the source root. | Right-click `src/main/java` → **Mark Directory as → Sources Root**.            |
 | **Cannot connect to MongoDB**     | Wrong token or network issue.                               | Verify the contents of `token.txt` and network connection.              
 
 ## :warning: License
