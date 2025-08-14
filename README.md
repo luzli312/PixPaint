@@ -11,8 +11,8 @@
 - [License](#warning-license)
 - [Feedback](#loudspeaker-feedback)
 - [Contributing](#handshake-contributing)
-  * [How to Contribute](#spiral-notepad-how-to-contribute)
-  * [Guidelines for Good Merge Request](#ballot-box-with-check-guidelines-for-good-merge-request)
+  * [How to Contribute](#spiral_notepad-how-to-contribute)
+  * [Guidelines for Good Merge Request](#ballot_box_with_check-guidelines-for-good-merge-request)
   * [Merge Review Protocol](#mag-merge-review-protocol)
 
 ## :pushpin: About the Project
@@ -65,10 +65,10 @@
 | **Cannot connect to MongoDB**     | Wrong token or network issue.                               | Verify the contents of `token.txt` and network connection.              
 
 ## :warning: License
-This project is licensed under the MIT License.
+This project is licensed under the [MIT License](https://github.com/luzli312/PixPaint/blob/main/LICENSE).
 
 ## :loudspeaker: Feedback
-Send feedback via our [Google Form].
+Send feedback via our [Google Form](https://forms.gle/sfDrBu71eR9VWkoz6).
 
 **Feedback Guidelines:**
 - Be clear and constructive.
@@ -81,7 +81,7 @@ Send feedback via our [Google Form].
 Contributions are always welcome! Follow the steps below.
 
 **Forking the project:**
-1. Go to [PixPaint repository] on GitHub.
+1. Go to [PixPaint repository](https://github.com/luzli312/PixPaint) on GitHub.
 2. Click the **Fork** button on the top-right corner to create your own copy.
 3. Clone your fork to your local machine:
    ```
