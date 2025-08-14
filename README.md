@@ -7,7 +7,7 @@
   * [Features](#star2-features)
   * [How to Use](#pencil-how-to-use)
   * [Authors](#stars-authors)
-- [Installation](#hammer-and-wrench-installation)
+- [Installation](#hammer_and_wrench-installation)
 - [License](#warning-license)
 - [Feedback](#loudspeaker-feedback)
 - [Contributing](#handshake-contributing)
