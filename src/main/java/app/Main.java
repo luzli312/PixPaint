@@ -25,8 +25,8 @@ public class Main {
      */
     public static void openPixPaint(String username) {
         pixPaint = new JFrame(username + "'s PixPaint!");
-        final int width = 970;
-        final int height = 730;
+        final int width = 980;
+        final int height = 740;
         pixPaint.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
         // when first opening the app have grid input be input white
