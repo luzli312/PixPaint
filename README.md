@@ -35,10 +35,10 @@
 1. Log in/Sign up to your account. <br>
    <img width="323" height="178" alt="Screenshot 2025-08-14 at 12 11 25 PM" src="https://github.com/user-attachments/assets/db58afa8-c9e9-4ead-9cf6-681e6bb8dbf6" />
 2. Draw your art piece, using the brush/eraser tool. Change the palette's color by rightclicking on the color tiles.
-   <img width="965" height="724" alt="Screenshot 2025-08-14 at 12 20 19 PM" src="https://github.com/user-attachments/assets/c1a576ce-9789-402a-a684-f6aab9935f35" />
-   <img width="960" height="720" alt="Screenshot 2025-08-14 at 12 12 59 PM" src="https://github.com/user-attachments/assets/e87efb66-8aa7-4793-9508-d58a1aabab9d" />
+   <img width="482" height="362" alt="Screenshot 2025-08-14 at 12 20 19 PM" src="https://github.com/user-attachments/assets/c1a576ce-9789-402a-a684-f6aab9935f35" />
+   <img width="480" height="360" alt="Screenshot 2025-08-14 at 12 12 59 PM" src="https://github.com/user-attachments/assets/e87efb66-8aa7-4793-9508-d58a1aabab9d" />
 3. Export your finished art piece as a PNG! <br>
-   <img width="640" height="640" alt="bunny" src="https://github.com/user-attachments/assets/1e96978f-e5c8-4399-a476-07e3ecaa14c6" />
+   <img width="320" height="320" alt="bunny" src="https://github.com/user-attachments/assets/1e96978f-e5c8-4399-a476-07e3ecaa14c6" />
 
 ### :stars: Authors
 - [Elizabeth Li](https://github.com/luzli312)
